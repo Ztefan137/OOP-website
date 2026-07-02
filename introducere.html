@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+     <title>Introducere în C++ și OOP</title>
+</head>
+
+<body class="bg-gray-100 text-gray-900">
+
+  <!-- LAYOUT PRINCIPAL -->
+  <div class="flex">
+
+    <!-- NAVBAR -->
+    <div id="navbar"></div>
+
+    <!-- CONȚINUT PAGINĂ -->
+    <main class="flex-1 p-10 ml-64">
+
+        <!-- CARD 1 -->
+        <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+            <h1 class="text-4xl font-bold text-blue-700 mb-4">
+                Introducere în C++ și Programarea Orientată pe Obiecte
+            </h1>
+
+            <p class="text-gray-700 leading-relaxed text-lg">
+                Înainte de a intra în detaliile programării orientate pe obiecte, este important să
+                înțelegem contextul în care a apărut OOP și modul în care limbajul C++ a evoluat
+                pentru a o susține. C++ este un limbaj multi-paradigmă, ceea ce înseamnă că permite
+                atât programare procedurală, cât și orientată pe obiecte.
+            </p>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-semibold mb-4">Ce este C++?</h2>
+
+            <img 
+                src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" 
+                alt="Logo C++"
+                class="w-40 mb-4 rounded-lg shadow"
+            >
+
+            <p class="text-gray-700 leading-relaxed">
+                C++ este un limbaj de programare puternic, folosit în aplicații de performanță ridicată,
+                sisteme embedded, jocuri video și multe alte domenii critice. Este unul dintre cele mai
+                influente limbaje din istorie și baza ideală pentru a învăța programarea orientată pe obiecte.
+            </p>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+
+    <h2 class="text-2xl font-semibold mb-4">Exemplu de cod C++</h2>
+
+    <div class="bg-gray-900 text-gray-100 rounded-lg p-4 font-mono text-sm overflow-x-auto shadow-inner">
+        <pre><code>
+        #include &lt;iostream&gt;
+        using namespace std;
+
+        class Animal {
+        public:
+            virtual void speak() {
+                cout &lt;&lt; "Animalul scoate un sunet\n";
+            }
+        };
+
+        class Caine : public Animal {
+        public:
+            void speak() override {
+                cout &lt;&lt; "Ham! Ham!\n";
+            }
+        };
+
+        int main() {
+            Animal* a = new Caine();
+            a->speak();
+            delete a;
+        }
+        </code></pre>
+            </div>
+
+        </div>
+
+        <!-- CARD 2 -->
+        <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-semibold mb-4">De ce C++?</h2>
+
+            <p class="text-gray-700 leading-relaxed">
+                C++ este unul dintre cele mai influente limbaje de programare, folosit în:
+            </p>
+
+            <ul class="mt-4 list-disc list-inside text-gray-700 leading-relaxed">
+                <li>dezvoltare de jocuri</li>
+                <li>sisteme embedded</li>
+                <li>aplicații de performanță ridicată</li>
+                <li>engine‑uri grafice și simulări</li>
+                <li>aplicații critice (bănci, telecom, automotive)</li>
+            </ul>
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-semibold mb-4">De ce OOP?</h2>
+
+            <p class="text-gray-700 leading-relaxed">
+                OOP a apărut ca răspuns la complexitatea tot mai mare a software‑ului. În loc să
+                lucrăm cu funcții și date separate, OOP ne permite să modelăm concepte reale sub
+                formă de <span class="font-semibold">obiecte</span> care combină date și comportamente.
+            </p>
+
+            <p class="mt-4 text-gray-700 leading-relaxed">
+                OOP oferă:
+            </p>
+
+            <ul class="mt-4 list-disc list-inside text-gray-700 leading-relaxed">
+                <li>structurare mai bună a codului</li>
+                <li>reutilizare prin moștenire</li>
+                <li>flexibilitate prin polimorfism</li>
+                <li>siguranță prin încapsulare</li>
+            </ul>
+        </div>
+
+        <!-- CARD 4 -->
+        <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-semibold mb-4">Legătura dintre C++ și OOP</h2>
+
+            <p class="text-gray-700 leading-relaxed">
+                C++ a fost unul dintre primele limbaje mainstream care a integrat OOP într-un mod
+                eficient, fără a renunța la controlul fin asupra memoriei. De aceea, este un limbaj
+                excelent pentru a învăța atât conceptele OOP, cât și modul în care acestea sunt
+                implementate la nivel de compilator.
+            </p>
+        </div>
+
+    </main>
+
+
+    </div>
+
+    <!-- SCRIPT NAVBAR -->
+    <script>
+    fetch("navbar.html")
+      .then(r => r.text())
+      .then(html => {
+        document.getElementById("navbar").innerHTML = html;
+
+        const current = location.pathname.split("/").pop();
+
+        document.querySelectorAll("#navbar a").forEach(a => {
+          const href = a.getAttribute("href");
+
+          // NU colora "Curs OOP" niciodată
+          if (href === "index.html" && a.textContent.includes("Curs OOP")) {
+            return;
+          }
+
+          // marchează doar pagina curentă
+          if (href === current) {
+            a.classList.add("bg-blue-600", "text-white");
+            a.classList.remove("hover:bg-gray-800", "hover:text-blue-400");
+          }
+        });
+      });
+  </script>
+
+</body>
+</html>

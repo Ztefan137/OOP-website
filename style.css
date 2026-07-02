@@ -1,0 +1,179 @@
+/* Culori Inspirate din Design (Dark Mode, Neon Blue & Teal/Green Gradient)
+   Fisier CSS cu clase utilitare si componente
+*/
+
+:root {
+    --bg-main: #1d1b3a; /* Fundalul general foarte inchis */
+    --bg-card: #25224e; /* Fundalul cardurilor */
+    --bg-card-hover: #2e2a5f;
+    
+    --text-primary: #ffffff;
+    --text-secondary: #a3a0cd;
+    --text-muted: #676391;
+    
+    /* Gradient principal: de la un albastru electric la un verde/turcoaz neon */
+    --gradient-start: #007aff;
+    --gradient-mid: #00d2ff;
+    --gradient-end: #00f2fe;
+    --gradient-teal: #00f5a0;
+    
+    --border-radius: 12px;
+    --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.25);
+    --shadow-inset: inset 0 2px 4px rgba(255, 255, 255, 0.05);
+}
+
+/* Reset de baza & Box Sizing */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* ==========================================================================
+   CLASE UTILITARE (UTILITIES)
+   ========================================================================== */
+
+/* Backgrounds */
+.bg-dark-main { background-color: var(--bg-main); }
+.bg-dark-card { background-color: var(--bg-card); }
+.bg-gradient-ui { 
+    background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-teal) 100%); 
+}
+
+/* Typography & Text Colors */
+.text-white { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-muted { color: var(--text-muted); }
+.text-gradient {
+    background: linear-gradient(135deg, var(--gradient-mid), var(--gradient-teal));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.font-bold { font-weight: 700; }
+.font-medium { font-weight: 500; }
+.font-regular { font-weight: 400; }
+
+.fs-xs { font-size: 11px; }
+.fs-sm { font-size: 13px; }
+.fs-base { font-size: 15px; }
+.fs-lg { font-size: 18px; }
+.fs-xl { font-size: 24px; }
+.fs-huge { font-size: 36px; }
+
+/* Borders & Radius */
+.rounded-ui { border-radius: var(--border-radius); }
+.rounded-pill { border-radius: 9999px; }
+
+/* Spacing Helpers */
+.p-sm { padding: 12px; }
+.p-md { padding: 20px; }
+.p-lg { padding: 30px; }
+.m-0 { margin: 0; }
+.mb-xs { margin-bottom: 6px; }
+.mb-sm { margin-bottom: 12px; }
+.mb-md { margin-bottom: 20px; }
+
+/* Layout (Flexbox & Grid in stil clasic / structuri de suport) */
+.d-block { display: block; }
+.w-full { width: 100%; }
+
+/* Accent Elements */
+.left-accent-line {
+    border-left: 3px solid var(--gradient-mid);
+    padding-left: 12px;
+}
+.right-accent-line {
+    border-right: 3px solid var(--gradient-teal);
+    padding-right: 12px;
+}
+
+
+/* ==========================================================================
+   COMPONENTE PRE-STILIZATE (Inspirate direct din imagine)
+   ========================================================================== */
+
+/* Cardul de baza */
+.ui-card {
+    background-color: var(--bg-card);
+    border-radius: var(--border-radius);
+    padding: 22px;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Card cu gradient complet */
+.ui-card-gradient {
+    background: linear-gradient(135deg, #0052d4 0%, #4364f7 50%, #6fb1fc 100%);
+    /* Alternativ, gradientul exact turcoaz din poza: */
+    background: linear-gradient(135deg, #0072ff 0%, #00f2fe 100%);
+    border-radius: var(--border-radius);
+    padding: 22px;
+    color: #ffffff;
+    box-shadow: var(--shadow-soft);
+}
+
+/* Slider-ul audio/progres */
+.ui-slider-container {
+    width: 100%;
+    margin-top: 15px;
+}
+.ui-slider-track {
+    height: 6px;
+    border-radius: 3px;
+    background: linear-gradient(90deg, var(--gradient-teal) 0%, var(--gradient-start) 70%, #484570 70%, #484570 100%);
+    position: relative;
+}
+.ui-slider-handle {
+    width: 14px;
+    height: 14px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+/* Mici elemente decorative - Indicator Neumorfic / Buton rotund */
+.ui-circular-button {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--bg-card);
+    box-shadow: -4px -4px 10px rgba(255,255,255,0.03), 4px 4px 10px rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Dropdown list stila select */
+.ui-dropdown-header {
+    background-color: var(--bg-card);
+    padding: 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.ui-dropdown-item-active {
+    background: linear-gradient(90deg, var(--gradient-teal) 0%, var(--gradient-start) 100%);
+    color: white;
+    padding: 12px 14px;
+}
+.ui-dropdown-item {
+    padding: 12px 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    color: var(--text-secondary);
+}

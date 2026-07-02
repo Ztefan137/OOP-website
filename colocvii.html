@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modele Colocviu - Curs POO</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-image: linear-gradient(to bottom, #0f172a, #020617);
+            background-attachment: fixed;
+        }
+        .premium-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .premium-card:hover {
+            transform: translateY(-4px);
+        }
+    </style>
+</head>
+<body class="text-slate-200 min-h-screen p-4 md:p-12 flex flex-col items-center font-sans">
+
+    <div class="max-w-6xl w-full space-y-6">
+
+        <div class="premium-card bg-gradient-to-r from-cyan-600/40 to-sky-700/40 border border-cyan-500/20 rounded-3xl p-6 md:p-8 shadow-xl backdrop-blur-md w-full flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div class="space-y-2">
+                <span class="inline-block text-xs font-mono bg-cyan-950/60 text-cyan-400 px-3 py-1 rounded-full border border-cyan-500/30">
+                    Laborator / Evaluare
+                </span>
+                <h1 class="text-4xl text-white tracking-wide font-bold">
+                    Modele Colocviu
+                </h1>
+                <p class="text-sm text-slate-300">Rezolvate și parcurse complet în cadrul orelor de laborator.</p>
+            </div>
+            
+            <a href="./index.html" class="bg-white hover:bg-slate-100 text-slate-950 font-bold text-sm px-5 py-2.5 rounded-xl shadow-lg transition-colors flex items-center gap-2 group shrink-0 self-start sm:self-auto">
+                <svg class="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path>
+                </svg>
+                <span>Înapoi la Dashboard</span>
+            </a>
+        </div>
+
+        <div class="premium-card bg-white border border-slate-200 rounded-3xl p-6 md:p-8 shadow-xl text-slate-900 space-y-8">
+            
+            <section class="space-y-3">
+                <h2 class="text-xl font-bold text-cyan-600 flex items-center gap-2">
+                    <span>▪</span> Structura Evaluării de Laborator
+                </h2>
+                <p class="text-slate-600 leading-relaxed text-sm md:text-base">
+                    Colocviul de laborator testează abilitățile practice de implementare a conceptelor POO acumulate (încapsulare, moștenire, polimorfism și gestionarea corectă a memoriei). Mai jos găsești problemele tip model, complet documentate, gata pentru analiză și rulare.
+                </p>
+            </section>
+
+            <div id="modele-container" class="grid grid-cols-1 gap-4 pt-2 w-full">
+                <p class="text-slate-500 text-sm animate-pulse font-mono text-center">Se încarcă modelele de subiecte...</p>
+            </div>
+            
+        </div>
+
+    </div>
+
+    <script>
+        async function incarcaModele() {
+            const container = document.getElementById('modele-container');
+            
+            try {
+                const response = await fetch('colocvii.json');
+                const data = await response.json();
+                
+                container.innerHTML = '';
+
+                data.modele.forEach((model) => {
+                    const card = document.createElement('div');
+                    // S-a adăugat w-full pentru a asigura utilizarea întregului spațiu disponibil
+                    card.className = "w-full bg-slate-50 border border-slate-100 rounded-2xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-sm hover:shadow-md transition-shadow";
+                    
+                    card.innerHTML = `
+                        <div class="space-y-1.5 flex-1">
+                            <div class="flex items-center gap-3">
+                                <h3 class="font-bold text-slate-800 text-base tracking-tight">${model.titlu}</h3>
+                                <span class="text-[10px] font-mono font-bold bg-cyan-50 text-cyan-700 px-2 py-0.5 rounded-md border border-cyan-100 uppercase shrink-0">${model.dificultate}</span>
+                            </div>
+                            <p class="text-xs text-slate-500 leading-relaxed">${model.descriere}</p>
+                        </div>
+                        <a href="${model.url || '#'}" class="inline-flex items-center justify-center gap-1.5 bg-white hover:bg-slate-100 border border-slate-200 text-slate-700 font-semibold text-xs px-5 py-3 rounded-xl shadow-sm transition-colors shrink-0 whitespace-nowrap">
+                            <span>Vizualizează Rezolvarea</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-3.5 h-3.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                            </svg>
+                        </a>
+                    `;
+                    container.appendChild(card);
+                });
+
+            } catch (eroare) {
+                console.error('Eroare la incarcarea JSON:', eroare);
+                container.innerHTML = `
+                    <p class="text-rose-600 font-medium font-mono text-center">
+                        Eroare la încărcarea modelelor de colocviu. Verifică fișierul 'colocvii.json'.
+                    </p>
+                `;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', incarcaModele);
+    </script>
+</body>
+</html>

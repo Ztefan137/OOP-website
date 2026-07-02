@@ -1,0 +1,86 @@
+{
+  "OOP Basics": [
+    {
+      "id": "1",
+      "type": "grila",
+      "question": "Ce reprezintă o clasă în OOP?",
+      "answers": [
+        "O funcție specială",
+        "Un tip de date definit de utilizator",
+        "O variabilă globală",
+        "Un pointer către memorie"
+      ],
+      "correct": 1
+    },
+    {
+      "id": "2",
+      "type": "compilat",
+      "code": "#include <iostream>\nclass A { int x; };\nint main() { A a; std::cout << a.x; }",
+      "compiles": false,
+      "output": "",
+      "fix_line": 3
+    },
+    {
+      "id": "8",
+      "type": "compilat",
+      "code": "#include <iostream>\nusing namespace std;\n\nclass A {\n    static int x;\n\npublic:\n    A(int i = 0) { x = i; }\n    int get_x() { return x; }\n    int& set_x(int i) { x = i; }\n    A operator=(A a1)\n    {\n        set_x(a1.get_x());\n        return a1;\n    }\n};\nint main()\n{\n    A a(212), b;\n    cout << (b = a).get_x();\n    return 0;\n}",
+      "compiles": false,
+      "output": "",
+      "fix_line": 8
+    }
+  ],
+
+  "Moștenire": [
+    {
+      "id": "3",
+      "type": "grila",
+      "question": "Ce tip de moștenire permite accesul public la membrii clasei de bază?",
+      "answers": [
+        "Moștenire privată",
+        "Moștenire protejată",
+        "Moștenire publică",
+        "Moștenire multiplă"
+      ],
+      "correct": 2
+    },
+    {
+      "id": "4",
+      "type": "compilat",
+      "code": "#include <iostream>\nclass B { virtual void f() {} };\nint main() { B b; b.f(); }",
+      "compiles": true,
+      "output": "",
+      "fix_line": null
+    },
+    {
+      "id": "7",
+      "type": "compilat",
+      "code": "#include <iostream>\nusing namespace std;\nclass cls1\n{\nprotected:\n    int x;\n\npublic:\n    cls1() { x = 13; }\n};\nclass cls2 : public cls1\n{\n    int y;\n\npublic:\n    cls2() { y = 15; }\n    int f(cls2 ob) { return (ob.x + ob.y); }\n};\nint main()\n{\n    cls2 ob;\n    cout << ob.f(ob);\n    return 0;\n}",
+      "compiles": true,
+      "output": "28",
+      "fix_line": null
+    }
+  ],
+
+  "Polimorfism": [
+    {
+      "id": "5",
+      "type": "grila",
+      "question": "Ce mecanism permite apelarea metodelor suprascrise?",
+      "answers": [
+        "Constructorii",
+        "Destructorii",
+        "Funcțiile virtuale",
+        "Operatorii"
+      ],
+      "correct": 2
+    },
+    {
+      "id": "6",
+      "type": "compilat",
+      "code": "#include <iostream>\nclass Base { virtual void f() { std::cout << \"Base\"; } };\nint main() { Base b; b.f(); }",
+      "compiles": true,
+      "output": "Base",
+      "fix_line": null
+    }
+  ]
+}

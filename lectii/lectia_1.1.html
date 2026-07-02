@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecția 1.1 - Introducere în POO</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=JetBrains+Mono:wght@400;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                        titluCursiv: ['"Dancing Script"', 'cursive'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-image: linear-gradient(to bottom, #0f172a, #020617);
+            background-attachment: fixed;
+        }
+        .premium-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .premium-card:hover {
+            transform: translateY(-4px);
+        }
+    </style>
+</head>
+<body class="text-slate-200 min-h-screen p-4 md:p-12 flex flex-col items-center font-sans">
+
+    <div class="max-w-6xl w-full space-y-6">
+
+        <div class="premium-card bg-gradient-to-r from-cyan-600/40 to-sky-700/40 border border-slate-800 rounded-3xl p-6 md:p-8 shadow-xl backdrop-blur-md w-full flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div class="space-y-2">
+                <span class="inline-block text-xs font-mono bg-slate-800 text-slate-400 px-3 py-1 rounded-full border border-slate-700">
+                    Capitolul 1 / Lecția 1
+                </span>
+                <h1 class="text-4xl text-white tracking-wide font-bold">
+                    Introducere în Programarea Orientată pe Obiecte
+                </h1>
+                <p class="text-sm text-slate-400">Înțelegerea trecerii de la paradigma procedurală la cea orientată pe obiecte.</p>
+            </div>
+            
+            <a href="./../index.html" class="bg-white hover:bg-slate-100 text-slate-950 font-bold text-sm px-5 py-2.5 rounded-xl shadow-lg transition-colors flex items-center gap-2 group shrink-0 self-start sm:self-auto">
+                <svg class="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path>
+                </svg>
+                <span>Înapoi la Dashboard</span>
+            </a>
+        </div>
+
+        <div class="premium-card bg-white border border-slate-200 rounded-3xl p-6 md:p-8 shadow-xl text-slate-900 space-y-8">
+            
+            <section class="space-y-3">
+                <h2 class="text-xl font-bold text-sky-600 flex items-center gap-2">
+                    <span>▪</span> Ce este POO?
+                </h2>
+                <p class="text-slate-600 leading-relaxed text-sm md:text-base">
+                    Programarea Orientată pe Obiecte (POO) este o paradigmă de programare care utilizează <strong class="text-slate-900 font-semibold">obiecte</strong> și <strong class="text-slate-900 font-semibold">clase</strong> pentru a structura codul într-un mod care mimează lumea reală. Spre deosebire de programarea procedurală, unde accentul se pune pe funcții și secvențe de pași, în POO ne concentrăm pe datele pe care vrem să le manipulăm și pe interacțiunile dintre acestea.
+                </p>
+            </section>
+
+            <section class="space-y-3">
+                <h2 class="text-xl font-bold text-sky-600 flex items-center gap-2">
+                    <span>▪</span> Conceptul de Clasă vs. Obiect
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-100 shadow-sm">
+                        <h3 class="text-sm font-bold text-sky-600 uppercase tracking-wider font-mono mb-1.5">Clasa</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Este tiparul sau schița (blueprint). Ea definește proprietățile (atributele) și comportamentele (metodele) comune pe care le vor avea toate obiectele create pe baza ei. Nu ocupă memorie direct pentru date.
+                        </p>
+                    </div>
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-100 shadow-sm">
+                        <h3 class="text-sm font-bold text-emerald-600 uppercase tracking-wider font-mono mb-1.5">Obiectul</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Este instanța concretă a unei clase. Reprezintă entitatea fizică sau conceptuală creată din acea clasă, care are valori specifice pentru atribute și ocupă spațiu în memoria RAM.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="space-y-3">
+                <h2 class="text-xl font-bold text-sky-600 flex items-center gap-2">
+                    <span>▪</span> Exemplu practic în C++
+                </h2>
+                <p class="text-slate-600 text-sm">Priviți structura de bază a definirii unei clase și instanțierea unui obiect:</p>
+                
+                <div class="rounded-2xl overflow-hidden border border-slate-800 text-sm font-mono shadow-md">
+                    <div class="bg-slate-950 px-4 py-2 border-b border-slate-800 flex justify-between items-center text-xs text-slate-500">
+                        <span>main.cpp</span>
+                        <span>C++</span>
+                    </div>
+                    <pre class="bg-[#0b1329] p-4 text-[#e2e8f0] overflow-x-auto leading-relaxed"><code><span class="text-pink-500">#include</span> <span class="text-orange-400">&lt;iostream&gt;</span>
+<span class="text-pink-500">using namespace</span> std;
+
+<span class="text-sky-400">class</span> <span class="text-yellow-400">Student</span> {
+<span class="text-pink-500">public</span>:
+    string nume;
+    <span class="text-sky-400">int</span> varsta;
+
+    <span class="text-sky-400">void</span> <span class="text-blue-400">saluta</span>() {
+        cout &lt;&lt; <span class="text-orange-400">"Salut! Numele meu este "</span> &lt;&lt; nume &lt;&lt; endl;
+    }
+};
+
+<span class="text-sky-400">int</span> <span class="text-blue-400">main</span>() {
+    <span class="text-yellow-400">Student</span> s1;          <span class="text-slate-500">// Instanțierea unui obiect</span>
+    s1.nume = <span class="text-orange-400">"Andrei"</span>;
+    s1.varsta = <span class="text-purple-400">20</span>;
+    
+    s1.<span class="text-blue-400">saluta</span>();        <span class="text-slate-500">// Apelarea metodei</span>
+    <span class="text-pink-500">return</span> <span class="text-purple-400">0</span>;
+}</code></pre>
+                </div>
+            </section>
+        </div>
+
+        <div class="premium-card flex flex-col sm:flex-row gap-4 items-center justify-between p-6 bg-white border border-slate-200 rounded-3xl shadow-xl text-slate-900">
+            <div>
+                <p class="text-sm font-bold text-slate-900">Ai înțeles conceptele?</p>
+                <p class="text-xs text-slate-500">Marchează lecția ca finalizată pentru a debloca următorul modul.</p>
+            </div>
+            <button id="btn-finalizare" class="w-full sm:w-auto bg-gradient-to-r from-sky-500 to-blue-600 text-white font-bold text-sm px-6 py-3 rounded-xl shadow-lg transition-all transform active:scale-[0.99] text-center">
+                Marchează ca Finalizat &rarr;
+            </button>
+        </div>
+
+    </div>
+
+    <script>
+        document.getElementById('btn-finalizare').onclick = function() {
+            const dateSalvate = localStorage.getItem('poo_dashboard_data');
+            
+            if (dateSalvate) {
+                let profil = JSON.parse(dateSalvate);
+                
+                if (profil.modulCurentIndex === 0) {
+                    profil.modulCurentIndex = 1;
+                    profil.streakZile = (profil.streakZile || 0) + 1;
+                    localStorage.setItem('poo_dashboard_data', JSON.stringify(profil));
+                }
+            }
+            
+            window.location.href = './../index.html';
+        };
+    </script>
+</body>
+</html>

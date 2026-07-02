@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curs POO - Dashboard Premium Complet</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #f8fafc;
+        }
+        .premium-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .premium-card:hover {
+            transform: translateY(-4px);
+        }
+    </style>
+</head>
+<body class="text-slate-800 min-h-screen p-4 md:p-12 flex flex-col items-center justify-center">
+
+    <div class="max-w-6xl w-full space-y-6">
+        
+        <div class="premium-card bg-white border border-slate-200/80 rounded-3xl p-6 shadow-sm w-full">
+            <div>
+                <h1 class="text-4xl font-extrabold tracking-tight text-slate-900">
+                    Curs POO
+                </h1>
+                <p class="text-sm text-slate-500 mt-1">Platformă interactivă pentru studiul Programării Orientate pe Obiecte.</p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            
+<div class="premium-card bg-gradient-to-br from-[#eab308] to-[#ca8a04] rounded-3xl p-6 flex flex-col justify-between text-white shadow-xl shadow-yellow-600/10 min-h-[280px]">
+
+    <div>
+        <div class="flex justify-between items-center">
+            <span class="text-[11px] font-black uppercase tracking-widest text-white">
+                PROGRES TOTAL
+            </span>
+            <span class="text-xs bg-white/20 text-white font-bold px-2 py-0.5 rounded-full">
+                6/8 Module
+            </span>
+        </div>
+
+        <div class="flex items-center justify-center my-4">
+            <div class="relative w-32 h-32 flex items-center justify-center">
+
+                <!-- Progress Ring (clockwise, start at 12) -->
+                <svg class="w-full h-full" viewBox="0 0 36 36">
+                    <!-- Background circle -->
+                    <path
+                        class="text-white/20"
+                        stroke-width="3"
+                        stroke="currentColor"
+                        fill="none"
+                        d="
+                            M18 2.0845
+                            a 15.9155 15.9155 0 0 1 0 31.831
+                            a 15.9155 15.9155 0 0 1 0 -31.831
+                        " />
+
+                    <!-- Progress circle (72%) -->
+                    <path
+                        class="text-white"
+                        stroke-width="3"
+                        stroke-linecap="round"
+                        stroke="currentColor"
+                        fill="none"
+                        stroke-dasharray="72 100"
+                        d="
+                            M18 2.0845
+                            a 15.9155 15.9155 0 0 1 0 31.831
+                            a 15.9155 15.9155 0 0 1 0 -31.831
+                        " />
+                </svg>
+
+                <!-- Percentage -->
+                <div class="absolute text-center">
+                    <span class="text-3xl font-black tracking-tight text-white drop-shadow">
+                        72%
+                    </span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <p class="text-xs text-white text-center font-semibold">
+        Ești cu un pas mai aproape de examenul final!
+    </p>
+
+</div>
+
+            <div class="premium-card bg-gradient-to-br from-[#1e3a8a] to-[#172554] rounded-3xl p-6 shadow-xl shadow-blue-950/20 lg:col-span-2 flex flex-col justify-between min-h-[280px]">
+                <div class="flex-1">
+                    <span class="text-[11px] font-bold text-blue-200 uppercase tracking-widest block mb-5">Traseul tău de învățare</span>
+                    
+                    <div class="relative pl-8 border-l-2 border-blue-800/60 space-y-6 ml-2">
+                        <div class="relative group/item">
+                            <div class="absolute -left-[41px] top-1 w-4 h-4 rounded-full bg-emerald-500 border-4 border-[#1e3a8a] shadow-sm"></div>
+                            <div class="text-[10px] text-blue-300 font-bold uppercase tracking-wide">Modulul anterior</div>
+                            <h4 class="text-sm font-semibold text-blue-300/60 line-through">Moștenire & Ierarhii de Clase</h4>
+                        </div>
+
+                        <div class="relative group/item">
+                            <div class="absolute -left-[41px] top-1 w-4 h-4 rounded-full bg-sky-400 border-4 border-[#1e3a8a] shadow-md shadow-sky-400/50"></div>
+                            <div class="text-[10px] text-sky-300 font-bold uppercase tracking-wide">În curs de desfășurare</div>
+                            <h4 class="text-sm font-semibold text-white">Polimorfism la Execuție (Dinamic)</h4>
+                        </div>
+
+                        <div class="relative group/item">
+                            <div class="absolute -left-[41px] top-1 w-4 h-4 rounded-full bg-blue-900 border-4 border-[#1e3a8a] shadow-sm"></div>
+                            <div class="text-[10px] text-blue-300 font-bold uppercase tracking-wide">Următorul pas</div>
+                            <h4 class="text-sm font-semibold text-blue-200">Design Patterns & Modele de Proiectare</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-6 border-t border-blue-800/40 mt-4">
+                    <button class="bg-white hover:bg-blue-50 text-blue-950 font-bold text-sm px-6 py-3 rounded-xl shadow-lg transition-colors w-full sm:w-auto flex items-center justify-center gap-2">
+                        Citește Cursul Curent <span>&rarr;</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="premium-card bg-gradient-to-br from-[#10b981] to-[#059669] text-white rounded-3xl p-6 shadow-xl shadow-emerald-900/10 lg:col-span-3 grid grid-cols-1 md:grid-cols-3 gap-6 items-center min-h-[140px]">
+
+                <!-- DAILY STREAK -->
+                <div class="flex items-center gap-4 border-b md:border-b-0 md:border-white/10 pb-4 md:pb-0 pr-0 md:pr-4">
+                    <div class="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center text-2xl shadow-inner">
+                        🔥
+                    </div>
+                    <div>
+                        <span class="text-[10px] font-bold text-emerald-200 uppercase tracking-widest block">DAILY STREAK</span>
+                        <h4 class="text-xl font-black tracking-tight text-white">15 Zile Active</h4>
+                        <p class="text-xs text-emerald-100">Continuă seria!</p>
+                    </div>
+                </div>
+
+                <!-- EXERCIȚII RAMASE -->
+                <div class="flex items-center gap-4 border-b md:border-b-0 md:border-white/10 pb-4 md:pb-0 px-0 md:px-4">
+                    <div class="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center text-xl text-white font-bold font-mono shadow-inner">
+                        📘
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex justify-between items-center text-[10px] font-bold text-emerald-200 uppercase tracking-widest mb-1">
+                            <span>EXERCIȚII CAPITOL</span>
+                            <span class="text-white font-bold">3 Ramase</span>
+                        </div>
+                        <div class="w-full h-2 bg-white/20 rounded-full overflow-hidden">
+                            <div class="h-full bg-white rounded-full" style="width: 60%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BUTON MERGI LA EXERCIȚII -->
+                <div class="pl-0 md:pl-4 flex flex-col sm:flex-row md:flex-col lg:flex-row justify-between items-start sm:items-center md:items-start lg:items-center gap-4">
+                    <div>
+                        <span class="text-[10px] font-bold text-emerald-200 uppercase tracking-widest block">EXERCIȚII</span>
+                        <h4 class="text-sm font-bold text-white">Accesează capitolul curent</h4>
+                    </div>
+                    <button class="bg-white hover:bg-emerald-50 text-emerald-900 font-bold text-xs px-5 py-3 rounded-xl shadow-md transition-colors w-full sm:w-auto md:w-full lg:w-auto text-center whitespace-nowrap">
+                        Mergi la Exerciții &rarr;
+                    </button>
+                </div>
+
+            </div>
+
+            <div class="premium-card bg-gradient-to-br from-[#db2777] to-[#ec4899] rounded-3xl p-6 lg:col-span-2 flex flex-col justify-between text-white shadow-xl shadow-pink-900/10 min-h-[250px]">
+                <div class="space-y-2">
+                    <h3 class="text-3xl font-black tracking-tight">Toate Cursurile</h3>
+                    <p class="text-sm text-pink-100 opacity-90">Accesează lista completă a modulelor și materialelor de studiu disponibile pentru acest semestru.</p>
+                </div>
+
+                <div class="pt-4">
+                    <a href="./cursuri.html" class="inline-flex items-center justify-center bg-white text-pink-900 font-bold text-sm px-6 py-3 rounded-xl shadow-lg hover:bg-pink-50 transition-colors w-full sm:w-auto text-center">
+                        Vezi Cursurile &rarr;
+                    </a>
+                </div>                
+            </div>
+
+            <div class="premium-card bg-gradient-to-br from-[#06b6d4] to-[#0891b2] rounded-3xl p-6 flex flex-col justify-between text-white shadow-xl shadow-cyan-900/10 min-h-[250px]">
+                <div class="space-y-2">
+                    <h3 class="text-3xl font-black tracking-tight">Modele Colocviu</h3>
+                    <p class="text-sm text-purple-100 opacity-90">Rezolvate și parcurse</p>
+                </div>
+
+                <div class="mt-6">
+                    <a href="./colocvii.html" class="inline-flex items-center justify-center bg-white text-purple-900 font-bold text-sm px-6 py-3 rounded-xl shadow-lg hover:bg-purple-50 transition-colors w-full sm:w-auto text-center">
+                        Vezi modele &rarr;
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="premium-card bg-gradient-to-br from-[#7e22ce] to-[#6b21a8] text-white rounded-3xl p-6 shadow-xl shadow-purple-900/10 lg:col-span-3 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 min-h-[160px]">
+
+            <div class="flex items-center gap-4">
+                <div class="space-y-2">
+                    <h3 class="text-3xl font-black tracking-tight">Simulare examen</h3>
+                    <p class="text-sm text-purple-100 opacity-90">Vezi cât ai lua la examen</p>
+                </div>
+            </div>
+
+            <div class="pt-4">
+                <a href="./simulare.html" class="inline-flex items-center justify-center bg-white text-purple-900 font-bold text-sm px-6 py-3 rounded-xl shadow-lg hover:bg-purple-50 transition-colors w-full sm:w-auto text-center">
+                    Începe simularea &rarr;
+                </a>
+            </div>
+        </div>
+
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "modele": [
+    {
+      "titlu": "Model 1 — Gestiune restaurant",
+      "dificultate": "Dificil",
+      "descriere":"Momentan incomplet",
+      "url": "model_1.html"
+    },
+    {
+      "titlu": "Model 2 — Gestiune casă de licitații",
+      "dificultate": "Dificil",
+      "descriere":"Momentan incomplet",
+      "url": "model_2.html"
+    },
+    {
+      "titlu": "Model 3 — Autostrăzi",
+      "dificultate": "Mediu",
+      "descriere": "Momentan incomplet",
+      "url": "model_3.html"
+    }
+  ]
+}

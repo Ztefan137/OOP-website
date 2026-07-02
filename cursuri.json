@@ -1,0 +1,98 @@
+{
+  "cursuri": [
+    {
+      "id": 1,
+      "titlu": "Capitolul 1 — Introducere în POO",
+      "lectii": [
+        { "nume": "1.1. Ce este Programarea Orientată pe Obiecte", "url": "lectia_1.1.html" },
+        { "nume": "1.2. Paradigme de programare", "url": "lectia_1.2.html" },
+        { "nume": "1.3. Avantajele OOP", "url": "lectia_1.3.html" }
+      ]
+    },
+    {
+      "id": 2,
+      "titlu": "Capitolul 2 — Clase și Obiecte",
+      "lectii": [
+        { "nume": "2.1. Definirea unei clase", "url": "lectia_2.1.html" },
+        { "nume": "2.2. Membri și metode", "url": "lectia_2.2.html" },
+        { "nume": "2.3. Instanțierea obiectelor", "url": "lectia_2.3.html" },
+        { "nume": "2.4. Constructori și destructori", "url": "lectia_2.4.html" }
+      ]
+    },
+    {
+      "id": 3,
+      "titlu": "Capitolul 3 — Încapsulare",
+      "lectii": [
+        { "nume": "3.1. Atribute private", "url": "lectia_3.1.html" },
+        { "nume": "3.2. Getter & Setter", "url": "lectia_3.2.html" },
+        { "nume": "3.3. Controlul accesului", "url": "lectia_3.3.html" }
+      ]
+    },
+    {
+      "id": 4,
+      "titlu": "Capitolul 4 — Moștenire",
+      "lectii": [
+        { "nume": "4.1. Relația IS-A", "url": "lectia_4.1.html" },
+        { "nume": "4.2. Clase derivate", "url": "lectia_4.2.html" },
+        { "nume": "4.3. Tipuri de moștenire", "url": "lectia_4.3.html" }
+      ]
+    },
+    {
+      "id": 5,
+      "titlu": "Capitolul 5 — Polimorfism la Compilare",
+      "lectii": [
+        { "nume": "5.1. Supraincărcarea funcțiilor", "url": "lectia_5.1.html" },
+        { "nume": "5.2. Supraincărcarea operatorilor", "url": "lectia_5.2.html" }
+      ]
+    },
+    {
+      "id": 6,
+      "titlu": "Capitolul 6 — Polimorfism la Execuție",
+      "lectii": [
+        { "nume": "6.1. Funcții virtuale", "url": "lectia_6.1.html" },
+        { "nume": "6.2. Overriding", "url": "lectia_6.2.html" },
+        { "nume": "6.3. Clase abstracte", "url": "lectia_6.3.html" }
+      ]
+    },
+    {
+      "id": 7,
+      "titlu": "Capitolul 7 — Design Patterns",
+      "lectii": [
+        { "nume": "7.1. Singleton", "url": "lectia_7.1.html" },
+        { "nume": "7.2. Factory", "url": "lectia_7.2.html" },
+        { "nume": "7.3. Strategy", "url": "lectia_7.3.html" }
+      ]
+    },
+    {
+      "id": 8,
+      "titlu": "Capitolul 8 — Proiect & SFML",
+      "lectii": [
+        { "nume": "8.1. Setup SFML", "url": "lectia_8.1.html" },
+        { "nume": "8.2. Ferestre și evenimente", "url": "lectia_8.2.html" },
+        { "nume": "8.3. Render loop", "url": "lectia_8.3.html" },
+        { "nume": "8.4. Structura proiectului", "url": "lectia_8.4.html" }
+      ]
+    },
+    {
+      "id": 9,
+      "titlu": "Capitolul 9 — Utilizarea GitHub",
+      "lectii": [
+        { "nume": "9.1. Crearea unui repository", "url": "lectia_9.1.html" },
+        { "nume": "9.2. Commit & Push", "url": "lectia_9.2.html" },
+        { "nume": "9.3. Branching & Workflow", "url": "lectia_9.3.html" },
+        { "nume": "9.4. Issues & Project Boards", "url": "lectia_9.4.html" }
+      ]
+    },
+    {
+      "id": 10,
+      "titlu": "Capitolul 10 — CLion & Tooling",
+      "lectii": [
+        { "nume": "10.1. Configurarea mediului", "url": "lectia_10.1.html" },
+        { "nume": "10.2. CMake în CLion", "url": "lectia_10.2.html" },
+        { "nume": "10.3. Debugging", "url": "lectia_10.3.html" },
+        { "nume": "10.4. Profiling & Performance Tools", "url": "lectia_10.4.html" },
+        { "nume": "10.5. Profiling & Performance Tools", "url": "lectia_10.5.html" }
+      ]
+    }
+  ]
+}

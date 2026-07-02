@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curs POO - Simulare Examen</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { 
+            background-image: linear-gradient(to bottom, #0f172a, #020617); 
+            background-attachment: fixed;
+        }
+        .premium-card { 
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+        }
+        .premium-card:hover { 
+            transform: translateY(-4px); 
+        }
+        pre, textarea {
+            background: #0b1329;
+            padding: 16px;
+            border-radius: 12px;
+            border: 1px solid #1e293b;
+            overflow-x: auto;
+            font-size: 0.85rem;
+            color: #e2e8f0;
+        }
+    </style>
+</head>
+
+<body class="text-slate-200 min-h-screen p-4 md:p-12 flex flex-col items-center font-sans">
+
+    <div class="max-w-5xl w-full space-y-6">
+
+        <div class="premium-card bg-slate-900/60 border border-slate-800 rounded-3xl p-6 shadow-xl backdrop-blur-md flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div>
+                <h1 class="text-4xl font-extrabold tracking-tight text-white">
+                    Simulare Examen
+                </h1>
+                <p class="text-sm text-slate-400 mt-1">
+                    Selectare aleatorie: 30 grilă + 12 compilat.
+                </p>
+                <div class="mt-3 flex items-center gap-2 text-rose-500 font-bold bg-rose-500/10 border border-rose-500/20 px-3 py-1 rounded-xl w-fit">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5 animate-pulse">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                    <span id="timer-text" class="text-md tracking-wider font-mono">02:00:00</span>
+                </div>
+            </div>
+
+            <a href="index.html" class="bg-white hover:bg-slate-100 text-slate-950 font-bold text-sm px-5 py-2.5 rounded-xl shadow-lg transition-colors flex items-center gap-2 shrink-0 self-start md:self-auto justify-center w-full md:w-auto">
+                <span>Înapoi la Dashboard</span>
+            </a>
+        </div>
+
+        <div id="simulare-card" class="premium-card bg-white border border-slate-200 rounded-3xl p-6 md:p-8 shadow-xl space-y-8 text-slate-900">
+            <p class="text-slate-500 text-sm animate-pulse font-mono">Se încarcă exercițiile...</p>
+        </div>
+
+        <div id="nota-finala" class="hidden premium-card bg-white border-2 border-sky-500/20 rounded-3xl p-8 shadow-2xl text-center text-slate-900">
+            <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Rezultat Final Simulare</h2>
+            <div id="nota-text" class="mt-4"></div>
+        </div>
+
+    </div>
+
+    <script>
+        let timerInterval; 
+        let grila = [];
+        let compilat = [];
+
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function asiguraLungime(array, lungimeDorita) {
+            if (!array || array.length === 0) return [];
+            let rezultat = [...array];
+            while (rezultat.length < lungimeDorita) {
+                const clona = array.map(item => ({ ...item }));
+                rezultat = rezultat.concat(clona);
+            }
+            return rezultat;
+        }
+
+        function pornesteTimer(durataSecunde) {
+            const timerText = document.getElementById("timer-text");
+            let timpRamas = duration = durataSecunde;
+
+            timerInterval = setInterval(() => {
+                let ore = Math.floor(timpRamas / 3600);
+                let minute = Math.floor((timpRamas % 3600) / 60);
+                let secunde = timpRamas % 60;
+
+                ore = ore < 10 ? "0" + ore : ore;
+                minute = minute < 10 ? "0" + minute : minute;
+                secunde = secunde < 10 ? "0" + secunde : secunde;
+
+                if (timerText) timerText.textContent = `${ore}:${minute}:${secunde}`;
+
+                if (timpRamas <= 0) {
+                    clearInterval(timerInterval);
+                    const btnFinalizeaza = document.getElementById("finalizeaza");
+                    if (btnFinalizeaza) btnFinalizeaza.click();
+                }
+                timpRamas--;
+            }, 1000);
+        }
+
+        async function verificaCompilareCod(codSursa, limbaj = "cpp") {
+            const versiuni = { "cpp": "10.2.0", "java": "15.0.2", "csharp": "5.0.201" };
+            try {
+                const response = await fetch("https://emkc.org/api/v2/piston/execute", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        language: limbaj,
+                        version: versiuni[limbaj] || "*",
+                        files: [{ content: codSursa }]
+                    })
+                });
+                const result = await response.json();
+                if (result.run && !result.run.stderr) {
+                    return true; 
+                }
+                return false;
+            } catch (err) {
+                console.error("Eroare API:", err);
+                return false;
+            }
+        }
+
+        async function loadSimulare() {
+            const container = document.getElementById("simulare-card");
+
+            try {
+                const response = await fetch("exercitii.json");
+                const data = await response.json();
+
+                Object.keys(data).forEach(cat => {
+                    if (Array.isArray(data[cat])) {
+                        data[cat].forEach(ex => {
+                            if (ex.type === "grila") grila.push(ex);
+                            if (ex.type === "compilat") compilat.push(ex);
+                        });
+                    }
+                });
+
+                grila = asiguraLungime(grila, 30).slice(0, 30);
+                compilat = asiguraLungime(compilat, 12).slice(0, 12);
+                grila = shuffle(grila);
+                compilat = shuffle(compilat);
+
+                grila.forEach((ex, idx) => { ex.uiId = `g-${idx}`; });
+                compilat.forEach((ex, idx) => { ex.uiId = `c-${idx}`; });
+
+                container.innerHTML = `
+                    <div class="flex items-center gap-3 border-b border-slate-100 pb-4 mb-6">
+                        <span class="w-2.5 h-2.5 rounded-full bg-sky-500"></span>
+                        <h2 class="text-xl font-bold text-slate-900">Exerciții Grilă <span class="text-xs font-mono text-sky-600 bg-sky-50 px-2 py-0.5 rounded-md ml-2">1p / exercițiu</span></h2>
+                    </div>
+                    <div id="grila-list" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+
+                    <div class="flex items-center gap-3 border-b border-slate-100 pb-4 mt-12 mb-6">
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                        <h2 class="text-xl font-bold text-slate-900">Exerciții de Compilat <span class="text-xs font-mono text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md ml-2">5p / exercițiu</span></h2>
+                    </div>
+                    <div id="compilat-list" class="space-y-6"></div>
+
+                    <div class="pt-6 border-t border-slate-100 flex flex-col items-end gap-3">
+                        <div id="status-compilare" class="hidden text-xs font-mono text-amber-600 bg-amber-50 px-3 py-1.5 rounded-xl border border-amber-200 animate-pulse">
+                            ⚙️ Se apelează compilatorul extern pentru verificarea codurilor reparate. Te rugăm să aștepți...
+                        </div>
+                        <button id="finalizeaza" class="w-full md:w-auto bg-gradient-to-r from-sky-500 to-blue-600 text-white font-bold text-sm px-8 py-3.5 rounded-xl shadow-lg transition active:scale-[0.99]">
+                            Finalizează și Trimite Simularea
+                        </button>
+                    </div>
+                `;
+
+                pornesteTimer(7200);
+
+                const grilaList = document.getElementById("grila-list");
+                const compilatList = document.getElementById("compilat-list");
+
+                grila.forEach((ex, idx) => {
+                    const div = document.createElement("div");
+                    div.className = "bg-slate-50 border border-slate-100 rounded-2xl p-5 flex flex-col justify-between shadow-sm";
+                    div.innerHTML = `
+                        <div>
+                            <h3 class="font-bold text-slate-800 text-sm mb-4 leading-relaxed"><span class="text-sky-600 font-mono mr-1">${idx + 1}.</span> ${ex.question || 'Întrebare lipsă'}</h3>
+                            <div class="space-y-2">
+                                ${(ex.answers || []).map((ans, i) => `
+                                    <button data-q="${ex.uiId}" data-ans="${i}" class="grila-btn w-full text-left px-4 py-2.5 border border-slate-200 rounded-xl hover:bg-slate-200/50 text-slate-700 text-xs transition bg-white">${ans}</button>
+                                `).join("")}
+                            </div>
+                        </div>
+                    `;
+                    grilaList.appendChild(div);
+                });
+
+                document.querySelectorAll(".grila-btn").forEach(btn => {
+                    btn.addEventListener("click", () => {
+                        const qid = btn.dataset.q;
+                        document.querySelectorAll(`.grila-btn[data-q="${qid}"]`).forEach(b => {
+                            b.classList.remove("is-selected", "bg-sky-50", "text-sky-700", "border-sky-400", "font-semibold");
+                            b.classList.add("border-slate-200", "text-slate-700", "bg-white");
+                        });
+                        btn.classList.add("is-selected", "bg-sky-50", "text-sky-700", "border-sky-400", "font-semibold");
+                    });
+                });
+
+                compilat.forEach((ex, idx) => {
+                    const div = document.createElement("div");
+                    div.className = "bg-slate-50 border border-slate-100 rounded-2xl p-5 space-y-4 shadow-sm";
+                    const lang = ex.language || "cpp";
+
+                    div.innerHTML = `
+                        <div class="flex flex-col gap-3">
+                            <h3 class="font-bold text-slate-800 text-sm"><span class="text-emerald-600 font-mono mr-1">${idx + 1}.</span> Problemă de analiză cod (${lang.toUpperCase()}):</h3>
+                            
+                            <div id="code-container-${ex.uiId}">
+                                <pre id="pre-${ex.uiId}" class="font-mono text-xs">${ex.code || ''}</pre>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-1">
+                                <label class="flex items-center gap-3 bg-white border border-slate-200 px-4 py-3 rounded-xl cursor-pointer">
+                                    <input type="radio" name="comp-${ex.uiId}" value="true" class="accent-emerald-600 h-4 w-4">
+                                    <span class="text-xs text-slate-700 font-medium">Codul se compilează cu succes</span>
+                                </label>
+                                <label class="flex items-center gap-3 bg-white border border-slate-200 px-4 py-3 rounded-xl cursor-pointer">
+                                    <input type="radio" name="comp-${ex.uiId}" value="false" class="accent-emerald-600 h-4 w-4">
+                                    <span class="text-xs text-slate-700 font-medium">Codul generează eroare de compilare</span>
+                                </label>
+                            </div>
+
+                            <div id="extra-${ex.uiId}" class="mt-2 hidden bg-white border border-slate-200 p-4 rounded-xl space-y-3 shadow-inner">
+                                <div id="output-${ex.uiId}" class="hidden">
+                                    <label class="text-xs text-slate-500 block mb-1.5 font-medium">Care este output-ul exact generat în consolă?</label>
+                                    <input type="text" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 text-xs text-slate-900 focus:outline-none font-mono" placeholder="Output exact">
+                                </div>
+                                <div id="fix-${ex.uiId}" class="hidden">
+                                    <p class="text-xs text-amber-600 font-semibold">Modifică mai sus direct în editor porțiunea de cod pentru a repara eroarea de sintaxă.</p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+
+                    compilatList.appendChild(div);
+
+                    div.querySelectorAll(`input[name="comp-${ex.uiId}"]`).forEach(radio => {
+                        radio.addEventListener("change", () => {
+                            const extra = document.getElementById(`extra-${ex.uiId}`);
+                            const output = document.getElementById(`output-${ex.uiId}`);
+                            const fix = document.getElementById(`fix-${ex.uiId}`);
+                            const codeContainer = document.getElementById(`code-container-${ex.uiId}`);
+
+                            if (extra) extra.classList.remove("hidden");
+
+                            if (radio.value === "true") {
+                                if (output) output.classList.remove("hidden");
+                                if (fix) fix.classList.add("hidden");
+                                codeContainer.innerHTML = `<pre id="pre-${ex.uiId}" class="font-mono text-xs">${ex.code || ''}</pre>`;
+                            } else {
+                                if (fix) fix.classList.remove("hidden");
+                                if (output) output.classList.add("hidden");
+                                codeContainer.innerHTML = `
+                                    <textarea id="textarea-${ex.uiId}" rows="10" class="w-full font-mono text-xs rounded-xl p-4 bg-[#0b1329] text-[#e2e8f0] border border-slate-700 focus:border-emerald-500 focus:outline-none">${ex.code || ''}</textarea>
+                                `;
+                            }
+                        });
+                    });
+                });
+
+                document.getElementById("finalizeaza").addEventListener("click", calculeazaNota);
+
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        async function calculeazaNota() {
+            const btnFinalizeaza = document.getElementById("finalizeaza");
+            const statusCompilare = document.getElementById("status-compilare");
+
+            if (btnFinalizeaza) btnFinalizeaza.disabled = true;
+            if (statusCompilare) statusCompilare.classList.remove("hidden");
+
+            clearInterval(timerInterval);
+            const timerEl = document.getElementById("timer-text");
+            if (timerEl) timerEl.textContent = "Test finalizat!";
+
+            let puncteTotal = 10; 
+            let grilaCorecte = 0;
+            let compilatCorecte = 0;
+
+            grila.forEach(ex => {
+                const selectedBtn = document.querySelector(`.grila-btn[data-q="${ex.uiId}"].is-selected`);
+                if (selectedBtn) {
+                    if (selectedBtn.dataset.ans.toString().trim() === (ex.correct || "").toString().trim()) {
+                        puncteTotal += 1;
+                        grilaCorecte++;
+                    }
+                }
+            });
+
+            for (let ex of compilat) {
+                const sel = document.querySelector(`input[name="comp-${ex.uiId}"]:checked`);
+                if (!sel) continue;
+
+                const userCompiles = sel.value === "true";
+                const correctCompiles = ex.compiles === true || ex.compiles === "true";
+
+                if (userCompiles === correctCompiles) {
+                    if (correctCompiles) {
+                        const out = document.querySelector(`#output-${ex.uiId} input`);
+                        if (out && out.value.trim().toLowerCase() === (ex.output || "").toString().trim().toLowerCase()) {
+                            puncteTotal += 5;
+                            compilatCorecte++;
+                        }
+                    } else {
+                        const txtArea = document.getElementById(`textarea-${ex.uiId}`);
+                        if (txtArea) {
+                            const codModificat = txtArea.value;
+                            const lang = ex.language || "cpp";
+                            
+                            const esteReparatCorect = await verificaCompilareCod(codModificat, lang);
+                            
+                            if (esteReparatCorect) {
+                                puncteTotal += 5;
+                                compilatCorecte++;
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (statusCompilare) statusCompilare.classList.add("hidden");
+
+            const notaFinala = (puncteTotal / 10).toFixed(2);
+            const notaDiv = document.getElementById("nota-finala");
+            const notaText = document.getElementById("nota-text");
+
+            if (notaText && notaDiv) {
+                notaText.innerHTML = `
+                    <span class="block text-6xl font-black text-sky-500 tracking-tight font-mono">${notaFinala}</span>
+                    <div class="mt-4 inline-block bg-slate-50 border border-slate-200 p-4 rounded-2xl max-w-md text-slate-700 text-sm space-y-1 shadow-sm">
+                        <p class="font-bold text-slate-900 text-md">Punctaj total obținut: ${puncteTotal} / 100 puncte</p>
+                        <p class="text-xs text-slate-500 pt-1">Răspunsuri corecte grilă: ${grilaCorecte} / 30</p>
+                        <p class="text-xs text-slate-500">Probleme depanate/compilate corect: ${compilatCorecte} / 12</p>
+                    </div>
+                `;
+                notaDiv.classList.remove("hidden");
+                notaDiv.scrollIntoView({ behavior: "smooth", block: "center" });
+            }
+        }
+
+        loadSimulare();
+    </script>
+</body>
+</html>

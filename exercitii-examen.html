@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <title>Exerciții examen OOP — Compilator</title>
+</head>
+
+<body class="bg-gray-100 text-gray-900">
+
+<div class="flex">
+
+    <!-- NAVBAR -->
+    <div id="navbar"></div>
+
+    <!-- CONȚINUT PAGINĂ -->
+    <main class="flex-1 p-10 ml-64">
+
+        <h1 class="text-4xl font-bold text-blue-700 mb-10">Exerciții examen OOP — Compilator integrat</h1>
+
+        <!-- CARD PROBLEMA 1 -->
+        <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+
+            <h2 class="text-2xl font-semibold mb-4">Problema 1</h2>
+
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Se consideră următorul program C++. Modifică codul dacă vrei, apoi apasă
+                <span class="font-semibold">Compilează</span> pentru a vedea dacă se compilează sau nu.
+            </p>
+
+            <!-- EDITOR COD -->
+            <label class="block text-sm font-medium text-gray-600 mb-2">
+                Cod sursă C++
+            </label>
+
+            <textarea id="code-editor"
+                      class="w-full h-64 bg-gray-900 text-gray-100 rounded-lg p-4 font-mono text-sm resize-y outline-none"
+                      spellcheck="false">
+#include <iostream>
+using namespace std;
+
+class cls1 {
+protected:
+    int x;
+public:
+    cls1() { x = 13; }
+};
+
+class cls2 : public cls1 {
+    int y;
+public:
+    cls2() { y = 15; }
+    int f(cls2 ob) { return (ob.x + ob.y); }
+};
+
+int main() {
+    cls2 ob;
+    cout << ob.f(ob);
+    return 0;
+}
+            </textarea>
+
+            <!-- BUTOANE -->
+            <div class="flex gap-4 mt-6">
+                <button id="compile-btn"
+                        class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                    Compilează
+                </button>
+
+                <button id="reset-btn"
+                        class="px-4 py-2 bg-gray-300 text-gray-800 rounded-lg hover:bg-gray-400">
+                    Resetează codul
+                </button>
+            </div>
+
+            <!-- REZULTAT COMPILARE -->
+            <div id="compile-result" class="mt-6">
+                <p class="text-sm text-gray-600 mb-2">Rezultat compilare:</p>
+                <div id="compile-status"
+                     class="inline-block px-3 py-1 rounded-full text-sm font-semibold bg-gray-200 text-gray-800">
+                    În așteptare...
+                </div>
+
+                <pre id="compile-output"
+                     class="mt-4 bg-gray-100 text-gray-800 rounded-lg p-4 text-sm overflow-x-auto whitespace-pre-wrap"></pre>
+            </div>
+
+        </div>
+
+        <!-- GRID NAVIGARE (placeholder) -->
+        <div class="grid grid-cols-10 gap-2 mt-6">
+            <button class="bg-blue-600 text-white rounded-lg py-2">1</button>
+            <button class="bg-gray-300 rounded-lg py-2 hover:bg-gray-400">2</button>
+            <button class="bg-gray-300 rounded-lg py-2 hover:bg-gray-400">3</button>
+            <button class="bg-gray-300 rounded-lg py-2 hover:bg-gray-400">4</button>
+            <button class="bg-gray-300 rounded-lg py-2 hover:bg-gray-400">5</button>
+            <button class="bg-gray-300 rounded-lg py-2 hover:bg-gray-400">6</button>
+            <button class="bg-gray-300 rounded-lg py-2 hover:bg-gray-400">7</button>
+            <button class="bg-gray-300 rounded-lg py-2 hover:bg-gray-400">8</button>
+            <button class="bg-gray-300 rounded-lg py-2 hover:bg-gray-400">9</button>
+            <button class="bg-gray-300 rounded-lg py-2 hover:bg-gray-400">10</button>
+        </div>
+
+    </main>
+
+</div>
+
+<!-- SCRIPT NAVBAR -->
+<script>
+    fetch("navbar.html")
+        .then(r => r.text())
+        .then(html => {
+            document.getElementById("navbar").innerHTML = html;
+
+            const current = location.pathname.split("/").pop();
+
+            document.querySelectorAll("#navbar a").forEach(a => {
+                const href = a.getAttribute("href");
+
+                if (href === "index.html" && a.textContent.includes("Curs OOP")) return;
+
+                if (href === current) {
+                    a.classList.add("bg-blue-600", "text-white");
+                    a.classList.remove("hover:bg-gray-800", "hover:text-blue-400");
+                }
+            });
+        });
+</script>
+
+<!-- SCRIPT COMPILATOR (Wandbox API) -->
+<script>
+    const defaultCode = `#include <iostream>
+using namespace std;
+
+class cls1 {
+protected:
+    int x;
+public:
+    cls1() { x = 13; }
+};
+
+class cls2 : public cls1 {
+    int y;
+public:
+    cls2() { y = 15; }
+    int f(cls2 ob) { return (ob.x + ob.y); }
+};
+
+int main() {
+    cls2 ob;
+    cout << ob.f(ob);
+    return 0;
+}
+`;
+
+    const codeEditor = document.getElementById("code-editor");
+    const compileBtn = document.getElementById("compile-btn");
+    const resetBtn = document.getElementById("reset-btn");
+    const statusEl = document.getElementById("compile-status");
+    const outputEl = document.getElementById("compile-output");
+
+    resetBtn.addEventListener("click", () => {
+        codeEditor.value = defaultCode;
+        statusEl.textContent = "În așteptare...";
+        statusEl.className = "inline-block px-3 py-1 rounded-full text-sm font-semibold bg-gray-200 text-gray-800";
+        outputEl.textContent = "";
+    });
+
+    compileBtn.addEventListener("click", async () => {
+        const code = codeEditor.value;
+
+        statusEl.textContent = "Compilez...";
+        statusEl.className = "inline-block px-3 py-1 rounded-full text-sm font-semibold bg-yellow-200 text-yellow-800";
+        outputEl.textContent = "";
+
+        try {
+            const res = await fetch("https://wandbox.org/api/compile.json", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    code: code,
+                    compiler: "gcc-head",
+                    options: "warning,gnu++17"
+                })
+            });
+
+            const data = await res.json();
+
+            // Wandbox: status === 0 => succes
+            if (data.status === 0) {
+                statusEl.textContent = "Compilează";
+                statusEl.className = "inline-block px-3 py-1 rounded-full text-sm font-semibold bg-green-200 text-green-800";
+
+                let out = "";
+                if (data.program_output) out += data.program_output + "\n";
+                if (data.compiler_output) out += "\n[Mesaje compilator]\n" + data.compiler_output;
+
+                outputEl.textContent = out.trim() || "(Nu există output.)";
+            } else {
+                statusEl.textContent = "Nu compilează";
+                statusEl.className = "inline-block px-3 py-1 rounded-full text-sm font-semibold bg-red-200 text-red-800";
+
+                let err = "";
+                if (data.compiler_output) err += data.compiler_output + "\n";
+                if (data.program_error) err += "\n[Erori la execuție]\n" + data.program_error;
+
+                outputEl.textContent = err.trim() || "(Nu există mesaje de eroare.)";
+            }
+
+        } catch (e) {
+            statusEl.textContent = "Eroare la compilare";
+            statusEl.className = "inline-block px-3 py-1 rounded-full text-sm font-semibold bg-red-200 text-red-800";
+            outputEl.textContent = "Nu am reușit să contactez serviciul de compilare.\n\n" + e;
+        }
+    });
+</script>
+
+</body>
+</html>

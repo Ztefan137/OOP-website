@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Curs OOP — Polimorfism la execuție</title>
+</head>
+
+<body class="bg-gray-100 text-gray-900">
+
+    <div class="flex">
+
+        <div id="navbar"></div>
+
+        <main class="flex-1 p-10 ml-64 w-full">
+
+            <div class="mb-8">
+                <h1 class="text-4xl font-bold text-blue-700">Polimorfism la execuție (Dinamic)</h1>
+                <p class="mt-4 text-lg leading-relaxed text-gray-700">
+                    Polimorfismul la execuție, cunoscut și sub numele de <span class="font-semibold text-blue-600">polimorfism dinamic</span> sau 
+                    <span class="font-semibold text-blue-600">late binding</span>, este unul dintre pilonii fundamentali ai 
+                    Programării Orientate pe Obiecte. Acesta permite unui program să determine ce metodă să execute în momentul 
+                    rulării, în funcție de tipul real al obiectului.
+                </p>
+            </div>
+
+            <section class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 mb-8">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">Mecanisme fundamentale în C++</h2>
+                <p class="text-gray-600 mb-4">Pentru a realiza polimorfismul la execuție, avem nevoie de trei elemente esențiale:</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-blue-50 p-4 rounded-xl border border-blue-100">
+                        <strong class="text-blue-800 block mb-1">1. Moștenire</strong>
+                        <span class="text-sm text-gray-600">O clasă derivată trebuie să extindă în mod public o clasă de bază.</span>
+                    </div>
+                    <div class="bg-blue-50 p-4 rounded-xl border border-blue-100">
+                        <strong class="text-blue-800 block mb-1">2. Funcții Virtuale</strong>
+                        <span class="text-sm text-gray-600">Metodele din clasa de bază trebuie declarate cu sintaxa <code>virtual</code>.</span>
+                    </div>
+                    <div class="bg-blue-50 p-4 rounded-xl border border-blue-100">
+                        <strong class="text-blue-800 block mb-1">3. Pointeri / Referințe</strong>
+                        <span class="text-sm text-gray-600">Apelul se face prin pointeri sau referințe de tipul clasei de bază.</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">Exemplu de cod în C++</h2>
+                <div class="bg-gray-900 text-gray-100 p-6 rounded-2xl font-mono text-sm shadow-lg overflow-x-auto border border-gray-800">
+<pre>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+
+class Animal {
+public:
+    virtual void scoateSunet() const {
+        std::cout &lt;&lt; "Animalul scoate un sunet generic.\n";
+    }
+    virtual ~Animal() = default;
+};
+
+class Caine : public Animal {
+public:
+    void scoateSunet() const override {
+        std::cout &lt;&lt; "Câinele latră: Ham! Ham!\n";
+    }
+};
+
+class Pisica : public Animal {
+public:
+    void scoateSunet() const override {
+        std::cout &lt;&lt; "Pisica miorlăie: Miau! Miau!\n";
+    }
+};
+
+int main() {
+    std::vector&lt;Animal*&gt; animale = { new Caine(), new Pisica() };
+
+    for (const auto* animal : animale) {
+        animal-&gt;scoateSunet(); // Decis la execuție (dinamic)
+    }
+
+    for (auto* animal : animale) delete animal;
+    return 0;
+}</pre>
+                </div>
+            </section>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-3">Ce se întâmplă în spate?</h2>
+                    <ul class="space-y-3 text-sm text-gray-600">
+                        <li>
+                            <strong class="text-gray-800">VTABLE (Tabela Virtuală):</strong> 
+                            O tabelă statică generată de compilator ce conține adresele funcțiilor virtuale pentru fiecare clasă.
+                        </li>
+                        <li>
+                            <strong class="text-gray-800">VPTR (Pointerul Virtual):</strong> 
+                            Un pointer ascuns în interiorul fiecărui obiect care indică spre VTABLE-ul corespunzător.
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-3">Avantajele majore</h2>
+                    <ul class="space-y-2 text-sm text-gray-600 list-disc list-inside">
+                        <li><span class="font-medium text-gray-800">Extensibilitate:</span> Adaugi clase noi fără a modifica codul existent.</li>
+                        <li><span class="font-medium text-gray-800">Interfețe curate:</span> Structură uniformă pentru obiecte diferite.</li>
+                        <li><span class="font-medium text-gray-800">Fără Switch-uri:</span> Elimină structurile repetitive de verificare a tipului.</li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </main>
+
+    </div>
+
+    <script>
+        fetch("navbar.html")
+            .then(r => r.text())
+            .then(html => {
+                document.getElementById("navbar").innerHTML = html;
+                const current = location.pathname.split("/").pop();
+
+                document.querySelectorAll("#navbar a").forEach(a => {
+                    const href = a.getAttribute("href");
+                    if (href === "index.html" && a.textContent.includes("Curs OOP")) return;
+
+                    if (href === current) {
+                        a.classList.add("bg-blue-600", "text-white", "rounded-xl");
+                        a.classList.remove("hover:bg-gray-800", "hover:text-blue-400");
+                    }
+                });
+            });
+    </script>
+
+</body>
+</html>
