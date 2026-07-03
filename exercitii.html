@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curs POO - Toate Cursurile Premium</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-image: linear-gradient(to bottom, #0f172a, #020617);
+            background-attachment: fixed;
+        }
+
+        .premium-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .premium-card:hover {
+            transform: translateY(-4px);
+        }
+    </style>
+</head>
+
+<body class="text-slate-200 min-h-screen p-4 md:p-12 flex flex-col items-center justify-center font-sans">
+
+    <div class="max-w-7xl w-full space-y-6">
+
+        <div class="premium-card bg-gradient-to-r from-cyan-600/40 to-sky-700/40 border border-slate-800 rounded-3xl p-6 shadow-xl backdrop-blur-md w-full flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div>
+                <h1 class="text-4xl text-white tracking-wide font-bold">
+                    Toate Cursurile
+                </h1>
+                <p class="text-sm text-slate-400 mt-1">Lista completă a capitolelor și lecțiilor disponibile.</p>
+            </div>
+            
+            <a href="./index.html" class="bg-white hover:bg-slate-100 text-slate-950 font-bold text-sm px-5 py-2.5 rounded-xl shadow-lg transition-colors flex items-center gap-2 group shrink-0">
+                <svg class="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path>
+                </svg>
+                <span>Înapoi la Dashboard</span>
+            </a>
+        </div>
+
+        <div id="cursuri-container" class="premium-card bg-white border border-slate-200 rounded-3xl p-8 shadow-xl text-slate-900 space-y-10">
+            <p class="text-slate-500 text-sm animate-pulse font-mono">Se încarcă structura cursurilor...</p>
+        </div>
+
+    </div>
+
+    <script>
+        async function incarcaCursuri() {
+            const container = document.getElementById('cursuri-container');
+            
+            try {
+                const response = await fetch('cursuri.json');
+                const data = await response.json();
+                
+                container.innerHTML = '';
+
+                const gridTeorie = document.createElement('div');
+                gridTeorie.className = "grid grid-cols-1 md:grid-cols-2 gap-10";
+                
+                const linieSeparatoare = document.createElement('div');
+                linieSeparatoare.className = "border-t border-slate-200 pt-2 my-4";
+                
+                const gridPractica = document.createElement('div');
+                gridPractica.className = "grid grid-cols-1 md:grid-cols-2 gap-10";
+
+                data.cursuri.forEach((capitol) => {
+                    const capDiv = document.createElement('div');
+                    capDiv.className = "p-4 rounded-2xl hover:bg-slate-50 transition-colors duration-200";
+                    
+                    const estePractic = capitol.id >= 8;
+                    const titluCuloare = estePractic ? 'text-emerald-600' : 'text-sky-600';
+                    const hoverCuloare = estePractic ? 'hover:text-emerald-600' : 'hover:text-sky-600';
+
+                    capDiv.innerHTML = `
+                        <h2 class="text-xl font-bold ${titluCuloare} mb-3 tracking-tight">
+                            ${capitol.titlu}
+                        </h2>
+                        <ul class="space-y-3 text-slate-600 text-sm">
+                            ${capitol.lectii.map(lectie => `
+                                <li class="border-b border-dashed border-slate-100 pb-2 last:border-none">
+                                    <a href="${lectie.url || '#'}" class="${hoverCuloare} transition-all flex items-center justify-between group">
+                                        <span class="font-medium group-hover:underline">${lectie.nume}</span>
+                                        <span class="text-slate-400 group-hover:translate-x-1 transition-transform">→</span>
+                                    </a>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    `;
+
+                    if (estePractic) {
+                        gridPractica.appendChild(capDiv);
+                    } else {
+                        gridTeorie.appendChild(capDiv);
+                    }
+                });
+
+                container.appendChild(gridTeorie);
+                if (gridPractica.children.length > 0) {
+                    container.appendChild(linieSeparatoare);
+                    container.appendChild(gridPractica);
+                }
+
+            } catch (eroare) {
+                console.error('Eroare la încărcarea fișierului JSON:', eroare);
+                container.innerHTML = `
+                    <p class="text-rose-600 font-medium font-mono text-sm">
+                        Eroare la încărcarea cursurilor. Asigură-te că fișierul 'cursuri.json' există și este valid.
+                    </p>
+                `;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', incarcaCursuri);
+    </script>
+
+</body>
+</html>

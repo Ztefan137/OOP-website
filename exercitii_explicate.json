@@ -1,0 +1,21 @@
+{
+    "capitole": [
+      {
+        "id": 1,
+        "titlu": "Capitolul 1: Clase și Obiecte",
+        "tip": "standard",
+        "exercitii": [
+          { "id": 1.1, "nume": "Definirea unei clase simple 'Produs'", "url": "./exercitii/clase_produs.html" },
+          { "id": 1.2, "nume": "Instanțierea obiectelor din clasa 'Student'", "url": "./exercitii/clase_student.html" }
+        ]
+      },
+      {
+        "id": 8,
+        "titlu": "Capitolul 8: Design Patterns aplicate",
+        "tip": "avansat",
+        "exercitii": [
+          { "id": 8.1, "nume": "Implementarea unui Singleton Thread-Safe", "url": "./exercitii/pattern_singleton.html" }
+        ]
+      }
+    ]
+  }

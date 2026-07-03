@@ -7,7 +7,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=JetBrains+Mono:wght@400;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -16,8 +16,7 @@
                 extend: {
                     fontFamily: {
                         sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-                        mono: ['"JetBrains Mono"', 'monospace'],
-                        titluCursiv: ['"Dancing Script"', 'cursive'],
+                        titluFinut: ['"Playfair Display"', 'serif'],
                     }
                 }
             }
@@ -55,7 +54,7 @@
             <div class="absolute -top-24 -left-24 w-52 h-52 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
             
             <div class="relative z-10">
-                <h1 class="text-4xl text-white tracking-wide font-bold bg-gradient-to-r from-white via-slate-100 to-cyan-100 bg-clip-text text-transparent">
+                <h1 class="text-4xl text-white tracking-wide font-titluFinut bg-gradient-to-r from-white via-slate-100 to-cyan-100 bg-clip-text text-transparent">
                     Curs POO
                 </h1>
                 <p class="text-sm text-cyan-200/60 mt-1">Platformă interactivă pentru studiul Programării Orientate pe Obiecte.</p>
@@ -69,7 +68,7 @@
                 
                 <div class="relative z-10 flex flex-col items-center h-full w-full justify-between flex-1">
                     <div class="w-full text-center">
-                        <span class="text-4xl text-white font-titluCursiv tracking-wide block font-bold">
+                        <span class="text-3xl text-white font-titluFinut italic tracking-wide block font-semibold">
                             Progresul tău
                         </span>
                     </div>
@@ -96,13 +95,13 @@
                             </svg>
 
                             <div class="absolute text-center">
-                                <span id="percentage-text" class="text-2xl font-black tracking-tight text-white drop-shadow font-mono">
+                                <span id="percentage-text" class="text-2xl font-black tracking-tight text-white drop-shadow font-sans">
                                     0%
                                 </span>
                             </div>
                         </div>
 
-                        <span id="module-text" class="text-xs bg-white/20 text-white font-bold px-3 py-1 rounded-full font-mono mt-4 shadow-sm">
+                        <span id="module-text" class="text-xs bg-white/20 text-white font-bold px-3 py-1 rounded-full font-sans mt-4 shadow-sm">
                             Încărcare...
                         </span>
                     </div>
@@ -113,12 +112,12 @@
                 <div class="absolute -right-16 -bottom-16 w-64 h-64 bg-blue-500/10 rounded-full pointer-events-none transform rotate-45"></div>
                 
                 <div class="relative z-10 flex-1 flex flex-col">
-                    <span class="text-4xl text-blue-100 font-titluCursiv tracking-wide block mb-4 font-bold">Traseul tău de învățare</span>
+                    <span class="text-3xl text-blue-100 font-titluFinut italic tracking-wide block mb-4 font-semibold">Traseul tău de învățare</span>
                     
                     <div class="relative pl-8 border-l-2 border-blue-800/40 space-y-4 ml-2 flex-1 flex flex-col justify-center">
                         <div class="relative group/item">
                             <div class="absolute -left-[41px] top-1.5 w-4 h-4 rounded-full bg-sky-400"></div>
-                            <div class="text-[10px] text-blue-300 font-bold uppercase tracking-wide font-mono">Lecția anterioară</div>
+                            <div class="text-[10px] text-blue-300 font-bold uppercase tracking-wide font-sans">Lecția anterioară</div>
                             <h4 id="modul-anterior" class="text-sm font-semibold text-blue-300/60 line-through">-</h4>
                         </div>
 
@@ -126,13 +125,13 @@
                             <div class="absolute -left-[41px] top-1.5 w-4 h-4 rounded-full border-2 border-sky-400 flex items-center justify-center">
                                 <div class="w-1.5 h-1.5 rounded-full bg-sky-400"></div>
                             </div>
-                            <div class="text-[10px] text-sky-300 font-bold uppercase tracking-wide font-mono">În curs de parcurgere</div>
+                            <div class="text-[10px] text-sky-300 font-bold uppercase tracking-wide font-sans">În curs de parcurgere</div>
                             <h4 id="modul-curent" class="text-sm font-semibold text-white">-</h4>
                         </div>
 
                         <div class="relative group/item">
                             <div class="absolute -left-[41px] top-1.5 w-4 h-4 rounded-full border-2 border-sky-400/40"></div>
-                            <div class="text-[10px] text-blue-300 font-bold uppercase tracking-wide font-mono">Următoarea lecție</div>
+                            <div class="text-[10px] text-blue-300 font-bold uppercase tracking-wide font-sans">Următoarea lecție</div>
                             <h4 id="modul-urmator" class="text-sm font-semibold text-blue-200">-</h4>
                         </div>
                     </div>
@@ -149,34 +148,26 @@
             </div>
 
             <div class="premium-card bg-gradient-to-br from-[#10b981] to-[#14b8a6] text-white rounded-3xl p-8 shadow-xl shadow-emerald-900/5 md:col-span-2 flex flex-col justify-between min-h-[320px] h-full relative overflow-hidden group/card">
-    
                 <div class="absolute right-4 bottom-2 text-white pointer-events-none z-0 transition-transform duration-700 ease-out group-hover/card:scale-105 select-none">
                     <svg class="w-56 h-56 md:w-64 md:h-64 opacity-15" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="0.8">
                         <circle cx="80" cy="80" r="30" stroke="currentColor" stroke-dasharray="1 4" stroke-width="0.5" />
                         <circle cx="80" cy="80" r="45" stroke="currentColor" stroke-dasharray="2 2" stroke-width="0.3" />
-                        
                         <path d="M25 40 L15 48 L25 56" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M35 40 L45 48 L35 56" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
                         <line x1="32" y1="38" x2="28" y2="58" stroke-width="1.2" stroke-linecap="round"/>
-                        
-                        <line x1="15" y1="66" x2="45" y2="66" stroke-width="1" stroke-linecap="round" opacity="0.7"/>
-                        <line x1="15" y1="72" x2="35" y2="72" stroke-width="1" stroke-linecap="round" opacity="0.7"/>
-                        <line x1="20" y1="78" x2="55" y2="78" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
                     </svg>
                 </div>
             
                 <div class="relative z-10">
-                    <h2 class="text-4xl text-white font-titluCursiv tracking-wide block font-bold">
-                        Exerciții Capitol
-                    </h2>
+                    <h2 class="text-3xl text-white font-titluFinut italic tracking-wide block font-semibold">Exerciții Capitol</h2>
                     <p class="text-xs text-emerald-100/70 font-sans mt-1">Pune în practică noțiunile teoretice prin probleme dedicate.</p>
                 </div>
             
                 <div class="relative z-10 flex flex-col sm:flex-row items-end sm:items-center gap-6 w-full pt-6 border-t border-white/10">
                     <div class="flex-1 w-full">
-                        <div class="flex justify-between items-center text-[10px] font-bold text-teal-100 uppercase tracking-widest mb-2 font-mono">
+                        <div class="flex justify-between items-center text-[10px] font-bold text-teal-100 uppercase tracking-widest mb-2 font-sans">
                             <span>PROGRES CURENT</span>
-                            <span id="exercitii-ramase-text" class="text-white font-bold font-mono">0 Rămase</span>
+                            <span id="exercitii-ramase-text" class="text-white font-bold font-sans">0 Rămase</span>
                         </div>
                         <div class="w-full h-3 bg-white/20 rounded-full overflow-hidden shadow-inner backdrop-blur-sm">
                             <div id="exercitii-progress-bar" class="h-full bg-white rounded-full transition-[width] duration-500 shadow-md" style="width: 0%"></div>
@@ -194,14 +185,11 @@
 
             <div class="premium-card bg-gradient-to-br from-[#f97316] to-[#ea580c] text-white rounded-3xl p-6 shadow-xl shadow-orange-950/30 md:col-span-1 flex flex-col justify-between min-h-[320px] h-full relative overflow-hidden">
                 <div class="absolute -left-10 -bottom-10 w-32 h-32 bg-white/10 rounded-full blur-2xl pointer-events-none"></div>
-                
                 <div>
-                    <span class="text-3xl text-white font-titluCursiv tracking-wide block font-bold text-center">Daily Streak</span>
+                    <span class="text-3xl text-white font-titluFinut italic tracking-wide block text-center font-semibold">Daily Streak</span>
                 </div>
-
                 <div class="relative z-10 flex flex-col items-center justify-center text-center my-auto gap-2">
                     <img src="https://api.iconify.design/solar:fire-linear.svg?color=white" alt="Flame" class="w-12 h-12 mb-1 animatie-flacara filter drop-shadow-[0_2px_8px_rgba(255,255,255,0.2)] object-contain" />
-                    
                     <div>
                         <h4 id="streak-text" class="text-3xl font-black tracking-tight text-white font-sans leading-none text-center">0 Zile Active</h4>
                         <p class="text-[13px] text-orange-100/70 font-normal tracking-wide mt-1.5 text-center">Ține ritmul de lucru!</p>
@@ -213,7 +201,7 @@
                 <div class="premium-card bg-gradient-to-br from-[#db2777] to-[#ec4899] rounded-3xl p-6 flex flex-col justify-between text-white shadow-xl shadow-pink-900/10 min-h-[320px] h-full">
                     <div class="absolute right-2 -top-2 text-[100px] text-white/15 select-none pointer-events-none leading-none z-0">📖</div>
                     <div class="relative z-10 space-y-2 max-w-[85%]">
-                        <h3 class="text-3xl text-white font-titluCursiv tracking-wide font-bold">Toate Cursurile</h3>
+                        <h3 class="text-3xl text-white font-titluFinut italic tracking-wide font-semibold">Toate Cursurile</h3>
                         <p class="text-sm text-pink-100 opacity-90 font-sans">Accesează lista completă a modulelor și materialelor diacritice disponibile pentru acest semestru.</p>
                     </div>
                     <div class="relative z-10 pt-4">
@@ -227,9 +215,9 @@
                 </div>
 
                 <div class="premium-card bg-gradient-to-br from-[#06b6d4] to-[#0891b2] rounded-3xl p-6 flex flex-col justify-between text-white shadow-xl shadow-cyan-900/10 min-h-[320px] h-full">
-                    <div class="absolute right-4 top-[10px] text-[90px] text-white/15 select-none pointer-events-none font-mono font-bold leading-none z-0">&lt;/&gt;</div>
+                    <div class="absolute right-4 top-[10px] text-[90px] text-white/15 select-none pointer-events-none font-sans font-bold leading-none z-0">&lt;/&gt;</div>
                     <div class="relative z-10 space-y-2">
-                        <h3 class="text-3xl text-white font-titluCursiv tracking-wide font-bold">Modele Colocviu</h3>
+                        <h3 class="text-3xl text-white font-titluFinut italic tracking-wide font-semibold">Modele Colocviu</h3>
                         <p class="text-sm text-cyan-100 opacity-90 font-sans">Rezolvate și parcurse</p>
                     </div>
                     <div class="relative z-10 pt-4">
@@ -244,29 +232,17 @@
             </div>
 
             <div class="premium-card bg-gradient-to-br from-[#7e22ce] to-[#6b21a8] text-white rounded-3xl p-8 shadow-xl shadow-purple-900/10 md:col-span-3 flex flex-col justify-between min-h-[320px] h-full relative overflow-hidden group/card">
-    
                 <div class="absolute -right-6 -bottom-10 text-white pointer-events-none z-0 transition-transform duration-700 ease-out group-hover/card:translate-x-2 group-hover/card:-translate-y-2 select-none">
                     <svg class="w-64 h-64 md:w-72 md:h-72 opacity-15" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="0.8">
                         <circle cx="50" cy="60" r="35" stroke="currentColor" stroke-dasharray="2 3" stroke-width="0.5" />
-                        
                         <path d="M25 30 H65 V80 H25 Z" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M55 30 V40 H65" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
-                        
-                        <line x1="32" y1="45" x2="58" y2="45" stroke-linecap="round" />
-                        <line x1="32" y1="53" x2="58" y2="53" stroke-linecap="round" />
-                        <line x1="32" y1="61" x2="48" y2="61" stroke-linecap="round" />
-                        
-                        <g transform="rotate(-15 60 40)">
-                            <line x1="62" y1="20" x2="62" y2="55" stroke-width="1.2" stroke-linecap="round" />
-                            <path d="M62 55 L60 60 L64 60 Z" fill="currentColor" />
-                        </g>
                     </svg>
                 </div>
             
                 <div class="relative z-10 space-y-2 max-w-xl">
-                    <h3 class="text-4xl text-white font-titluCursiv tracking-wide font-bold">Simulare examen</h3>
+                    <h3 class="text-3xl text-white font-titluFinut italic tracking-wide font-semibold">Simulare examen</h3>
                     <p class="text-sm text-purple-100/90 font-sans leading-relaxed">
-                        Evaluează-ți cunoștințele acumulate de-a lungul semestrului. Testul simulează structura oficială a colocviului, oferindu-ți o estimare rapidă a notei pe care o poți obține în sesiunea reală.
+                        Evaluează-ți cunoștințele acumulate de-a lungul semestrului. Testul simulează structura oficială a colocviului.
                     </p>
                 </div>
             
@@ -279,8 +255,7 @@
                     </a>
                 </div>
             </div>
-
-        </div>
+            </div>
     </div>
 
     <script>
@@ -294,10 +269,9 @@
         window.resetProgres = function() {
             try {
                 localStorage.setItem('poo_dashboard_data', JSON.stringify(stareInitialaUtilizator));
-                console.log("%c Progresul a fost resetat!", "color: #10b981; font-weight: bold; font-size: 13px;");
                 initializeazaDashboard();
             } catch (e) {
-                console.error("Eroare la resetare:", e);
+                console.error(e);
             }
         };
 
