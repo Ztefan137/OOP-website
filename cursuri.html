@@ -92,7 +92,7 @@
                     const capDiv = document.createElement('div');
                     
                     // Verificăm după ID dacă face parte din capitolele practice (8, 9, 10 etc.)
-                    const estePractic = capitol.id >= 8;
+                    const estePractic = capitol.id >= 9;
                     const titluCuloare = estePractic ? 'text-emerald-600' : 'text-sky-600';
                     const hoverCuloare = estePractic ? 'hover:text-emerald-600' : 'hover:text-sky-600';
 
@@ -103,7 +103,7 @@
                         <ul class="space-y-2 text-slate-600 text-sm">
                             ${capitol.lectii.map(lectie => `
                                 <li>
-                                    <a href="${lectie.url || '#'}" class="${hoverCuloare} transition-colors">
+                                    <a href="lectii/${lectie.url || '#'}" class="${hoverCuloare} transition-colors">
                                         ${lectie.nume}
                                     </a>
                                 </li>
