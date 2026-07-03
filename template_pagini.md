@@ -89,7 +89,52 @@ Orice pagină nouă pornește de la această structură. Ea conține configurare
 ```html
 
 <div class="premium-card bg-white border border-slate-200 rounded-3xl p-6 md:p-8 shadow-xl text-slate-900 space-y-8">
-    
+    Lecția propriu zisă
+</div>
+
+<div class="premium-card bg-white border border-slate-200 rounded-3xl p-6 md:p-8 shadow-xl text-slate-900 space-y-8">
+    Lecția propriu zisă
 </div>
 
 ```
+
+## Card final
+
+```html
+
+        <div class="premium-card flex flex-col sm:flex-row gap-4 items-center justify-between p-6 bg-white border border-slate-200 rounded-3xl shadow-xl text-slate-900">
+            <div>
+                <p class="text-sm font-bold text-slate-900">Ai înțeles conceptele?</p>
+                <p class="text-xs text-slate-500">Marchează lecția ca finalizată pentru a debloca următorul modul.</p>
+            </div>
+            <button id="btn-finalizare" class="w-full sm:w-auto bg-gradient-to-r from-sky-500 to-blue-600 text-white font-bold text-sm px-6 py-3 rounded-xl shadow-lg transition-all transform active:scale-[0.99] text-center">
+                Marchează ca Finalizat &rarr;
+            </button>
+        </div>
+
+    </div>
+
+    <script>
+        document.getElementById('btn-finalizare').onclick = function() {
+            const dateSalvate = localStorage.getItem('poo_dashboard_data');
+            
+            if (dateSalvate) {
+                let profil = JSON.parse(dateSalvate);
+                
+                if (profil.modulCurentIndex === 0) {
+                    profil.modulCurentIndex = 1;
+                    profil.streakZile = (profil.streakZile || 0) + 1;
+                    localStorage.setItem('poo_dashboard_data', JSON.stringify(profil));
+                }
+            }
+            
+            window.location.href = './../index.html';
+        };
+    </script>
+
+```
+
+## Conținut central 
+
+
+
