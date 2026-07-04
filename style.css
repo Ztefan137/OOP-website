@@ -1,179 +1,103 @@
-/* Culori Inspirate din Design (Dark Mode, Neon Blue & Teal/Green Gradient)
-   Fisier CSS cu clase utilitare si componente
-*/
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
 
-:root {
-    --bg-main: #1d1b3a; /* Fundalul general foarte inchis */
-    --bg-card: #25224e; /* Fundalul cardurilor */
-    --bg-card-hover: #2e2a5f;
-    
-    --text-primary: #ffffff;
-    --text-secondary: #a3a0cd;
-    --text-muted: #676391;
-    
-    /* Gradient principal: de la un albastru electric la un verde/turcoaz neon */
-    --gradient-start: #007aff;
-    --gradient-mid: #00d2ff;
-    --gradient-end: #00f2fe;
-    --gradient-teal: #00f5a0;
-    
-    --border-radius: 12px;
-    --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.25);
-    --shadow-inset: inset 0 2px 4px rgba(255, 255, 255, 0.05);
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        background-color: #020c1b;
+        background-image: radial-gradient(at 50% 0%, rgba(3, 37, 78, 0.5) 0px, transparent 60%);
+        background-attachment: fixed;
+        @apply text-slate-200 min-h-screen p-4 md:p-12 flex flex-col items-center font-sans antialiased;
+    }
 }
 
-/* Reset de baza & Box Sizing */
-*, *::before, *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+@layer components {
+    /* Containere principale */
+    .app-container {
+        @apply max-w-6xl w-full space-y-6;
+    }
 
-body {
-    background-color: var(--bg-main);
-    color: var(--text-primary);
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    padding: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-}
+    /* Header-ul paginii */
+    .lesson-header {
+        @apply bg-gradient-to-r from-cyan-600/40 to-sky-700/40 border border-[#03254E]/60 rounded-[24px] p-6 shadow-xl backdrop-blur-md w-full flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4;
+    }
 
-/* ==========================================================================
-   CLASE UTILITARE (UTILITIES)
-   ========================================================================== */
+    .lesson-header-title {
+        @apply text-3xl text-white font-serif italic tracking-wide;
+    }
 
-/* Backgrounds */
-.bg-dark-main { background-color: var(--bg-main); }
-.bg-dark-card { background-color: var(--bg-card); }
-.bg-gradient-ui { 
-    background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-teal) 100%); 
-}
+    .lesson-header-subtitle {
+        @apply text-xs text-slate-400 font-light;
+    }
 
-/* Typography & Text Colors */
-.text-white { color: var(--text-primary); }
-.text-secondary { color: var(--text-secondary); }
-.text-muted { color: var(--text-muted); }
-.text-gradient {
-    background: linear-gradient(135deg, var(--gradient-mid), var(--gradient-teal));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
+    /* Secțiuni de conținut standard */
+    .content-card {
+        @apply bg-[#03254E] border border-slate-800/40 rounded-[28px] p-6 md:p-8 shadow-xl space-y-4;
+    }
 
-.font-bold { font-weight: 700; }
-.font-medium { font-weight: 500; }
-.font-regular { font-weight: 400; }
+    .content-card-title {
+        @apply text-2xl font-serif text-white italic;
+    }
 
-.fs-xs { font-size: 11px; }
-.fs-sm { font-size: 13px; }
-.fs-base { font-size: 15px; }
-.fs-lg { font-size: 18px; }
-.fs-xl { font-size: 24px; }
-.fs-huge { font-size: 36px; }
+    .content-card-text {
+        @apply text-slate-300 leading-relaxed text-sm md:text-[15px] font-light;
+    }
 
-/* Borders & Radius */
-.rounded-ui { border-radius: var(--border-radius); }
-.rounded-pill { border-radius: 9999px; }
+    /* Grid-ul pentru definiții (Clasă / Obiect) */
+    .definition-grid {
+        @apply grid grid-cols-1 md:grid-cols-2 gap-6;
+    }
 
-/* Spacing Helpers */
-.p-sm { padding: 12px; }
-.p-md { padding: 20px; }
-.p-lg { padding: 30px; }
-.m-0 { margin: 0; }
-.mb-xs { margin-bottom: 6px; }
-.mb-sm { margin-bottom: 12px; }
-.mb-md { margin-bottom: 20px; }
+    .definition-card-yellow {
+        @apply bg-[#E2B215] text-slate-950 rounded-[28px] p-6 shadow-xl flex flex-col justify-between min-h-[160px];
+    }
 
-/* Layout (Flexbox & Grid in stil clasic / structuri de suport) */
-.d-block { display: block; }
-.w-full { width: 100%; }
+    .definition-card-green {
+        @apply bg-[#10B981] text-slate-950 rounded-[28px] p-6 shadow-xl flex flex-col justify-between min-h-[160px];
+    }
 
-/* Accent Elements */
-.left-accent-line {
-    border-left: 3px solid var(--gradient-mid);
-    padding-left: 12px;
-}
-.right-accent-line {
-    border-right: 3px solid var(--gradient-teal);
-    padding-right: 12px;
-}
+    .definition-title {
+        @apply text-2xl font-serif italic font-bold;
+    }
 
+    .definition-text {
+        @apply text-xs md:text-sm font-medium leading-relaxed opacity-90;
+    }
 
-/* ==========================================================================
-   COMPONENTE PRE-STILIZATE (Inspirate direct din imagine)
-   ========================================================================== */
+    /* Zona de cod sursă */
+    .code-wrapper {
+        @apply rounded-2xl overflow-hidden border border-slate-900 shadow-2xl bg-[#020c1b];
+    }
 
-/* Cardul de baza */
-.ui-card {
-    background-color: var(--bg-card);
-    border-radius: var(--border-radius);
-    padding: 22px;
-    box-shadow: var(--shadow-soft);
-    border: 1px solid rgba(255, 255, 255, 0.03);
-    position: relative;
-    overflow: hidden;
-}
+    .code-header {
+        @apply bg-slate-950/80 px-4 py-2.5 border-b border-slate-900 flex justify-between items-center text-xs text-slate-500 font-mono;
+    }
 
-/* Card cu gradient complet */
-.ui-card-gradient {
-    background: linear-gradient(135deg, #0052d4 0%, #4364f7 50%, #6fb1fc 100%);
-    /* Alternativ, gradientul exact turcoaz din poza: */
-    background: linear-gradient(135deg, #0072ff 0%, #00f2fe 100%);
-    border-radius: var(--border-radius);
-    padding: 22px;
-    color: #ffffff;
-    box-shadow: var(--shadow-soft);
-}
+    .code-body {
+        @apply p-5 text-xs md:text-sm font-mono overflow-x-auto leading-relaxed text-slate-300;
+    }
 
-/* Slider-ul audio/progres */
-.ui-slider-container {
-    width: 100%;
-    margin-top: 15px;
-}
-.ui-slider-track {
-    height: 6px;
-    border-radius: 3px;
-    background: linear-gradient(90deg, var(--gradient-teal) 0%, var(--gradient-start) 70%, #484570 70%, #484570 100%);
-    position: relative;
-}
-.ui-slider-handle {
-    width: 14px;
-    height: 14px;
-    background-color: #ffffff;
-    border-radius: 50%;
-    position: absolute;
-    top: 50%;
-    left: 70%;
-    transform: translate(-50%, -50%);
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-}
+    /* Secțiunea finală de CTA (Call to Action) */
+    .completion-banner {
+        @apply bg-[#F97316] text-white rounded-[28px] p-6 shadow-xl flex flex-col sm:flex-row gap-4 items-center justify-between w-full;
+    }
 
-/* Mici elemente decorative - Indicator Neumorfic / Buton rotund */
-.ui-circular-button {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: var(--bg-card);
-    box-shadow: -4px -4px 10px rgba(255,255,255,0.03), 4px 4px 10px rgba(0,0,0,0.4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+    .completion-title {
+        @apply text-xl font-serif italic font-bold;
+    }
 
-/* Dropdown list stila select */
-.ui-dropdown-header {
-    background-color: var(--bg-card);
-    padding: 14px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-.ui-dropdown-item-active {
-    background: linear-gradient(90deg, var(--gradient-teal) 0%, var(--gradient-start) 100%);
-    color: white;
-    padding: 12px 14px;
-}
-.ui-dropdown-item {
-    padding: 12px 14px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-    color: var(--text-secondary);
+    .completion-subtitle {
+        @apply text-xs opacity-90 mt-0.5;
+    }
+
+    /* Butoane interactive */
+    .btn-primary {
+        @apply bg-white hover:bg-slate-100 text-slate-950 font-bold text-xs px-5 py-3 rounded-xl shadow-lg transition-all flex items-center gap-2 shrink-0 self-start sm:self-auto;
+    }
+
+    .btn-action {
+        @apply w-full sm:w-auto bg-white hover:bg-slate-100 text-slate-950 font-bold text-xs px-6 py-3.5 rounded-xl shadow-md transition-all uppercase tracking-wider shrink-0;
+    }
 }

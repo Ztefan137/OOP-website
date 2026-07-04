@@ -4,21 +4,30 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Lecția 1.1 - Introducere în POO</title>
-        <script src="https://cdn.tailwindcss.com"></script>
-        <script src="../tail_wind_config.js"></script>
+        
+        <script src="https://cdn.tailwindcss.com"></script>        
+        <script src="../tail_wind_config.js"></script>    
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-clike.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
+        <style>
+            body {
+                background-color: #020c1b;
+                background-image: radial-gradient(at 50% 0%, rgba(3, 37, 78, 0.5) 0px, transparent 60%);
+                background-attachment: fixed;
+            }
+        </style>
     </head>
-    <body>
+    <body class="text-slate-200 min-h-screen p-4 md:p-12 flex flex-col items-center font-sans antialiased">
+
         <div class="content-container">
 
             <div class="content-header">
                 <div>
                     <h1 class="content-header-title">Introducere în Programarea Orientată pe Obiecte</h1>
-                    <p class="content-header-subtitle">Lecția 1.1</p>
+                    <p class="content-header-subtitle">Lecția 1.2</p>
                 </div>
                 
                 <a href="./../index.html" class="btn-primary">
@@ -30,37 +39,10 @@
             </div>
 
             <div class="content-card">
-                <h2 class="content-card-title">Ce este POO?</h2>
+                <h2 class="content-card-title">Un heading</h2>
                 <p class="content-card-text">
-                    Programarea Orientată pe Obiecte (POO) este o paradigmă de programare care utilizează <strong class="text-white font-semibold">obiecte</strong> și <strong class="text-white font-semibold">clase</strong> pentru a structura codul într-un mod care mimează lumea reală. În loc să ne concentrăm doar pe funcții repetitive, în POO organizăm logica în jurul datelor reale.
+                    Lecție incompletă
                 </p>
-            </div>
-
-            <div class="definition-grid">
-                <div class="definition-card-yellow">
-                    <h3 class="definition-title">Clasa</h3>
-                    <p class="definition-text">
-                        Este tiparul sau schița (blueprint). Ea definește proprietățile și comportamentele comune pe care le vor avea obiectele. Nu ocupă memorie direct pentru date.
-                    </p>
-                </div>
-
-                <div class="definition-card-green">
-                    <h3 class="definition-title">Obiectul</h3>
-                    <p class="definition-text">
-                        Este instanța concretă a unei clase. Reprezintă entitatea fizică creată, care are valori specifice pentru atribute și ocupă spațiu în memoria RAM.
-                    </p>
-                </div>
-            </div>
-
-            <div class="content-card">
-                <h2 class="content-card-title">Exemplu practic în C++</h2>
-                
-                <div class="code-wrapper">
-                    <div class="code-header">
-                        <span>C++</span>
-                    </div>
-                    <pre class="code-body" data-src="../coduri/clasa.cpp"><code class="language-cpp"></code></pre>
-                </div>
             </div>
 
             <div class="completion-banner">
@@ -69,11 +51,12 @@
                     <p class="completion-subtitle">Marchează lecția ca finalizată pentru a-ți actualiza progresul pe dashboard.</p>
                 </div>
                 <button id="btn-finalizare" class="btn-action">
-                    Marchează ca Finalizat &rarr;
+                    <span>Marchează ca Finalizat</span>
                 </button>
             </div>
+
         </div>
         <script src="../fetch_code.js"></script>
         <script src="../mark_read.js"></script>
     </body>
-</html> 
+</html>
