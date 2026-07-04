@@ -12,32 +12,36 @@ tailwind.config = {
     plugins: [
         function({ addComponents, addBase }) {
 
+            // BASE STYLES
             addBase({
-                body: {
-                    backgroundColor: '#020c1b',
-                    backgroundImage: 'radial-gradient(at 50% 0%, rgba(3, 37, 78, 0.5) 0px, transparent 60%)',
-                    backgroundAttachment: 'fixed',
-                    margin: '0',
-                    color: '#e2e8f0',
-                    minHeight: '100vh',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    WebkitFontSmoothing: 'antialiased',
-                    MozOsxFontSmoothing: 'grayscale',
-                    padding: '1rem',
+                'body': {
+                    'background-color': '#020c1b',
+                    'background-image': 'radial-gradient(at 50% 0%, rgba(3, 37, 78, 0.5) 0px, transparent 60%)',
+                    'background-attachment': 'fixed',
+                    'margin': '0',
+                    'color': '#e2e8f0',
+                    'min-height': '100vh',
+                    'display': 'flex',
+                    'flex-direction': 'column',
+                    'align-items': 'center',
+                    '-webkit-font-smoothing': 'antialiased',
+                    '-moz-osx-font-smoothing': 'grayscale',
+                    'padding': '1rem',
                 },
                 '@media (min-width: 768px)': {
-                    body: { padding: '3rem' }
+                    'body': { 'padding': '3rem' }
                 }
             });
 
+            // COMPONENTS
             addComponents({
 
+                /* CONTAINER */
                 '.content-container': {
                     '@apply max-w-6xl w-full space-y-6': '',
                 },
 
+                /* HEADER */
                 '.content-header': {
                     '@apply bg-gradient-to-r from-cyan-600/40 to-sky-700/40 border border-[#03254E]/60 rounded-[24px] p-6 shadow-xl backdrop-blur-md w-full flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4': '',
                 },
@@ -48,16 +52,10 @@ tailwind.config = {
                     '@apply text-xs text-slate-400 font-light': '',
                 },
 
-                // CONTENT CARD – gradient + shadow ca CSS pur
+                /* MAIN CONTENT CARD — ENHANCED GRADIENT */
                 '.content-card': {
-                    borderRadius: '28px',
-                    padding: '1.5rem',
-                    boxShadow: '0 10px 40px rgba(0,0,0,0.45)',
-                    backdropFilter: 'blur(24px)',
-                    border: '1px solid rgba(30,64,175,0.4)',
-                    backgroundImage: 'linear-gradient(135deg, rgba(15,28,46,0.9), rgba(3,37,78,0.8), rgba(2,16,31,0.9))',
+                    '@apply bg-gradient-to-br from-[#03254E]/80 via-[#043463]/70 to-[#021a33]/80 border border-slate-800/40 rounded-[28px] p-6 md:p-8 shadow-xl backdrop-blur-md space-y-4': '',
                 },
-
                 '.content-card-title': {
                     '@apply text-2xl font-serif text-white italic': '',
                 },
@@ -65,47 +63,24 @@ tailwind.config = {
                     '@apply text-slate-300 leading-relaxed text-sm md:text-[15px] font-light': '',
                 },
 
+                /* GRID */
                 '.definition-grid': {
                     '@apply grid grid-cols-1 md:grid-cols-2 gap-6': '',
                 },
 
-                // YELLOW CARD
+                /* YELLOW CARD — GOLD GRADIENT */
                 '.definition-card-yellow': {
-                    borderRadius: '28px',
-                    padding: '1.5rem',
-                    minHeight: '160px',
-                    boxShadow: '0 10px 30px rgba(0,0,0,0.35)',
-                    backgroundImage: 'linear-gradient(135deg, #f7e9b0, #e2b215, #b8860b)',
-                    color: '#0f172a',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'space-between',
+                    '@apply bg-gradient-to-br from-amber-300 via-amber-400 to-yellow-600 text-slate-950 rounded-[28px] p-6 shadow-xl flex flex-col justify-between min-h-[160px]': '',
                 },
 
-                // GREEN CARD
+                /* GREEN CARD — EMERALD → TEAL GRADIENT */
                 '.definition-card-green': {
-                    borderRadius: '28px',
-                    padding: '1.5rem',
-                    minHeight: '160px',
-                    boxShadow: '0 10px 30px rgba(0,0,0,0.35)',
-                    backgroundImage: 'linear-gradient(135deg, #b2f7d4, #10b981, #0f766e)',
-                    color: '#0f172a',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'space-between',
+                    '@apply bg-gradient-to-br from-emerald-300 via-emerald-400 to-teal-600 text-slate-950 rounded-[28px] p-6 shadow-xl flex flex-col justify-between min-h-[160px]': '',
                 },
 
-                // ORANGE CARD
+                /* ORANGE CARD — FIERY ORANGE → RED GRADIENT */
                 '.definition-card-orange': {
-                    borderRadius: '28px',
-                    padding: '1.5rem',
-                    minHeight: '160px',
-                    boxShadow: '0 10px 30px rgba(0,0,0,0.35)',
-                    backgroundImage: 'linear-gradient(135deg, #ffb38a, #ff5a00, #b91c1c)',
-                    color: '#ffffff',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'space-between',
+                    '@apply bg-gradient-to-br from-orange-400 via-orange-500 to-red-600 text-white rounded-[28px] p-6 shadow-xl flex flex-col justify-between min-h-[160px]': '',
                 },
 
                 '.definition-title': {
@@ -115,13 +90,9 @@ tailwind.config = {
                     '@apply text-xs md:text-sm font-medium leading-relaxed opacity-90': '',
                 },
 
-                // CODE WRAPPER
+                /* CODE BLOCK — DEPTH GRADIENT */
                 '.code-wrapper': {
-                    borderRadius: '16px',
-                    overflow: 'hidden',
-                    border: '1px solid #1f2937',
-                    boxShadow: '0 10px 40px rgba(0,0,0,0.5)',
-                    backgroundImage: 'linear-gradient(180deg, #0b1528, #09101f, #020c1b)',
+                    '@apply bg-gradient-to-b from-[#0B1528] to-[#020c1b] rounded-2xl overflow-hidden border border-slate-800 shadow-2xl': '',
                 },
                 '.code-header': {
                     '@apply bg-[#070D19] px-4 py-2.5 border-b border-slate-800/60 flex justify-between items-center text-xs text-slate-400 font-mono': '',
@@ -138,6 +109,7 @@ tailwind.config = {
                     '& .token.punctuation': { '@apply text-slate-400': '' }
                 },
 
+                /* COMPLETION BANNER */
                 '.completion-banner': {
                     '@apply bg-gradient-to-r from-cyan-600/40 to-sky-700/40 text-white rounded-[28px] p-6 shadow-xl flex flex-col sm:flex-row gap-4 items-center justify-between w-full': '',
                 },
@@ -148,6 +120,7 @@ tailwind.config = {
                     '@apply text-xs opacity-90 mt-0.5': '',
                 },
 
+                /* BUTTONS */
                 '.btn-primary': {
                     '@apply bg-white hover:bg-slate-100 text-slate-950 font-bold text-xs px-5 py-3 rounded-xl shadow-lg transition-all flex items-center gap-2 shrink-0 self-start sm:self-auto': '',
                 },
