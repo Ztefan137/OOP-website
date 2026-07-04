@@ -191,8 +191,7 @@
                 <div class="relative z-10 flex flex-col items-center justify-center text-center my-auto gap-2">
                     <img src="https://api.iconify.design/solar:fire-linear.svg?color=white" alt="Flame" class="w-12 h-12 mb-1 animatie-flacara filter drop-shadow-[0_2px_8px_rgba(255,255,255,0.2)] object-contain" />
                     <div>
-                        <h4 id="streak-text" class="text-3xl font-black tracking-tight text-white font-sans leading-none text-center">0 Zile Active</h4>
-                        <p class="text-[13px] text-orange-100/70 font-normal tracking-wide mt-1.5 text-center">Ține ritmul de lucru!</p>
+                        <h1 id="streak-text" class="text-3xl font-black tracking-tight text-white font-sans leading-none text-center">0 Zile</h1>
                     </div>
                 </div>
             </div>
@@ -369,7 +368,7 @@
                 btnExercitii.onclick = () => { window.location.href = `./exercitii.html`; };
             }
 
-            document.getElementById('streak-text').textContent = `${profil.streakZile} Zile Active`;
+            document.getElementById('streak-text').textContent = `${profil.streakZile} Zile`;
             document.getElementById('exercitii-ramase-text').textContent = `${profil.exercitiiRamase} Rămase`;
 
             let procentBaraExercitii = 0;
