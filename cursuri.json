@@ -23,32 +23,31 @@
     },
     {
       "id": 3,
-      "titlu": "Capitolul 5 — Polimorfism la Compilare",
+      "titlu": "Capitolul 3 — Polimorfism la Compilare",
       "categorie": "curs",
       "lectii": [
-        { "nume": "5.1. Supraincărcarea funcțiilor", "url": "lectia_5.1.html" },
-        { "nume": "5.2. Supraincărcarea operatorilor", "url": "lectia_5.2.html" }
+        { "nume": "3.1. Supraincărcarea funcțiilor", "url": "lectia_3.1.html" },
+        { "nume": "3.2. Supraincărcarea operatorilor", "url": "lectia_3.2.html" }
       ]
     },
     {
       "id": 4,
-      "titlu": "Capitolul 3 — Încapsulare",
+      "titlu": "Capitolul 4 — Încapsulare",
       "categorie": "curs",
       "lectii": [
-        { "nume": "3.1. Atribute private", "url": "lectia_3.1.html" },
-        { "nume": "3.2. Getter & Setter", "url": "lectia_3.2.html" },
-        { "nume": "3.3. Controlul accesului", "url": "lectia_3.3.html" },
-        { "nume": "3.4. Interfețe", "url": "lectia_3.4.html" }
+        { "nume": "4.1. Atribute private", "url": "lectia_4.1.html" },
+        { "nume": "4.2. Getter & Setter", "url": "lectia_4.2.html" },
+        { "nume": "4.3. Controlul accesului", "url": "lectia_4.3.html" },
+        { "nume": "4.4. Interfețe", "url": "lectia_4.4.html" }
       ]
     },
     {
       "id": 5,
-      "titlu": "Capitolul 4 — Moștenire",
+      "titlu": "Capitolul 5 — Moștenire",
       "categorie": "curs",
       "lectii": [
-        { "nume": "4.1. Relația IS-A", "url": "lectia_4.1.html" },
-        { "nume": "4.2. Clase derivate", "url": "lectia_4.2.html" },
-        { "nume": "4.3. Tipuri de moștenire", "url": "lectia_4.3.html" }
+        { "nume": "5.1. Clase derivate", "url": "lectia_5.1.html" },
+        { "nume": "5.2. Tipuri de moștenire", "url": "lectia_5.2.html" }
       ]
     },
     {
