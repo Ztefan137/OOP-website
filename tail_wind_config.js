@@ -74,6 +74,9 @@ tailwind.config = {
                 '.definition-card-green': {
                     '@apply bg-[#10B981] text-slate-950 rounded-[28px] p-6 shadow-xl flex flex-col justify-between min-h-[160px]': '',
                 },
+                '.definition-card-orange': {
+                    '@apply bg-[#ff5a00] text-white rounded-[28px] p-6 shadow-xl flex flex-col justify-between min-h-[160px]': '',
+                },
                 '.definition-title': {
                     '@apply text-2xl font-serif italic font-bold': '',
                 },
