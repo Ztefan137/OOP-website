@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Colocvii</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="tail_wind_config.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-clike.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
+    </head>
+    <body>
+        <div class="content-container">
+            <div class="content-header">
+                <div>
+                    <h1 class="content-header-title">Exerciții</h1>
+                    <p class="content-header-subtitle">Explicate</p>
+                </div>
+                
+                <a href="./index.html" class="btn-primary">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path>
+                    </svg>
+                    <span>Înapoi la Dashboard</span>
+                </a>
+            </div>
+
+            <div class="content-card">
+                <h1 class="content-card-title">Exercițiul 1</h1>
+                <div class="code-wrapper">
+                    <div class="code-header">
+                        <span>C++</span>
+                    </div>
+                    <pre class="code-body" data-src="../coduri/pointeri_examen.cpp"><code class="language-cpp"></code></pre>
+                </div>
+                <p class="content-card-text">
+                    Programul nu compilează, deoarece cand derefernțiăm a_ptr obținem ceva constant ce nu poate fi modificat(acesta este tipul pointerului const int, chiar dacă adresa e spre o zonă neconstantă).
+                </p>
+                <p class="content-card-text">
+                    La linia următoare nu este problemă, deoarece pointerul este constant nu valoarea la care pointează (b_ptr++ ar fi dat eroare de compilare).
+                </p>
+            </div>
+
+            <div class="content-card">
+                <h1 class="content-card-title">Exercițiul 2</h1>
+                <div class="code-wrapper">
+                    <div class="code-header">
+                        <span>C++</span>
+                    </div>
+                    <pre class="code-body"><code class="language-cpp"></code></pre>
+                </div>
+                <p class="content-card-text">
+                    Alt exercitiu
+                </p>
+            </div>
+        </div>
+        <script src="fetch_code.js"></script>
+    </body>
+</html>

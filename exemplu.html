@@ -1,110 +1,61 @@
 <!DOCTYPE html>
 <html lang="ro">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard UI Demo</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Exemplu grafic</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="tail_wind_config.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-clike.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
+    </head>
 <body>
 
-    <div class="dashboard-container">
-        
-        <div class="column">
+    <div class="content-container">
+
+        <div class="content-header">
+            <div>
+                <h1 class="content-header-title">Titlu</h1>
+                <p class="content-header-subtitle">Subtitlu</p>
+            </div>
             
-            <div class="ui-card">
-                <div class="left-accent">
-                    <div class="font-semibold fs-base text-white mb-xs">Message</div>
-                    <div class="text-secondary fs-sm">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet.</div>
-                </div>
-            </div>
-
-            <div class="ui-card flex-between">
-                <div>
-                    <div class="font-bold fs-lg text-white">Lorem ipsum</div>
-                    <div class="text-secondary fs-sm">Lorem ipsum</div>
-                </div>
-                <div class="dots-menu">&#8942;</div>
-            </div>
-
-            <div class="row-flex">
-                <div class="ui-card" style="flex: 1; display: flex; flex-direction: column; justify-content: space-between; min-height: 110px;">
-                    <div class="left-accent-teal">
-                        <div class="font-semibold fs-xs text-white">Lorem ipsum</div>
-                        <div class="text-muted fs-xs" style="text-transform: none;">Lorem ipsum</div>
-                    </div>
-                    <div class="font-bold fs-xl text-white">20%</div>
-                </div>
-                
-                <div class="ui-card-gradient" style="display: flex; flex-direction: column; justify-content: space-between; min-height: 110px;">
-                    <div class="right-accent-white" style="text-align: left; align-self: flex-start; width: 100%;">
-                        <div class="font-semibold fs-xs text-white">Lorem ipsum</div>
-                        <div class="text-white fs-xs" style="text-transform: none; opacity: 0.8;">Lorem ipsum</div>
-                    </div>
-                    <div class="font-bold fs-xl text-white">40%</div>
-                </div>
-            </div>
-
-            <div class="ui-card">
-                <div class="player-controls">
-                    <div>
-                        <div class="font-bold fs-lg text-white">Lorem ipsum</div>
-                        <div class="text-secondary fs-sm">Lorem ipsum</div>
-                    </div>
-                    <div class="neumorphic-btn">
-                        <span class="bar"></span>
-                        <span class="bar"></span>
-                        <span class="bar"></span>
-                        <span class="bar"></span>
-                        <span class="bar"></span>
-                    </div>
-                </div>
-                
-                <div class="slider-container">
-                    <div class="slider-track">
-                        <div class="slider-thumb"></div>
-                    </div>
-                    <div class="flex-between" style="margin-top: 8px;">
-                        <span class="text-muted fs-xs">10:12</span>
-                        <span class="text-muted fs-xs">15:23</span>
-                    </div>
-                </div>
-            </div>
-
+            <a href="./index.html" class="btn-primary">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path>
+                </svg>
+                <span>Înapoi la Dashboard</span>
+            </a>
         </div>
 
-        <div class="column">
-            
-            <div class="ui-card flex-between">
-                <div class="icon-arrow-up">&uarr;</div>
-                <div class="font-bold fs-huge text-white">85,5%</div>
-                <div class="text-secondary" style="font-size: 18px; cursor: pointer;">&rsaquo;</div>
-            </div>
+        <div class="content-card">
+            <h2 class="content-card-title"">Titlu</h2>
+            <p class="content-card-text">Paragraf1</p>
+            <p class="content-card-text">Paragraf2</p>
+        </div>
 
-            <div class="dropdown-menu">
-                <div class="dropdown-header">
-                    <span class="text-white font-semibold fs-xs">LOREM IPSUM</span>
-                    <span class="text-secondary" style="font-size: 12px;">&#9662;</span>
-                </div>
-                <div class="dropdown-active-item">Lorem ipsum</div>
-                <div class="dropdown-item">Lorem ipsum</div>
-                <div class="dropdown-item">Lorem ipsum</div>
+        <div class="definition-grid">
+            <div class="definition-card-yellow">
+                <h2 class="definition-title">Card special galben</h2>
+                <p class="definition-text">Paragraf</p>
             </div>
-
-            <div class="row-flex">
-                <div class="small-vertical-card">
-                    <div class="font-bold fs-huge text-white">05</div>
-                    <div class="text-secondary fs-xs">Lorem<br>ipsum</div>
-                    <div class="star-icon">&#9733;</div>
-                </div>
-                
-                <div class="small-vertical-card">
-                    <div class="font-bold fs-huge text-white">10</div>
-                    <div class="text-secondary fs-xs">Lorem<br>ipsum</div>
-                    <div class="lock-icon"></div>
-                </div>
+            <div class="definition-card-green">
+                <h2 class="definition-title">Card special verde</h2>
+                <p class="definition-text">Paragraf</p>
             </div>
+        </div>
 
+        <div class="completion-banner">
+            <div>
+                <h3 class="completion-title">Ai înțeles conceptele?</h3>
+                <p class="completion-subtitle">Marchează lecția ca finalizată pentru a-ți actualiza progresul pe dashboard.</p>
+                <p class="completion-subtitle">Ăsta e special pentru lecții</p>
+            </div>
+            <button id="btn-finalizare" class="btn-action">
+                Marchează ca Finalizat &rarr;
+            </button>
         </div>
     </div>
 
