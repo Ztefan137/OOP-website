@@ -3,7 +3,7 @@ async function incarcaCursuri() {
     if (!container) return;
 
     try {
-        const response = await fetch('cursuri.json');
+        const response = await fetch('cursuri.json?nocache=' + Date.now());
         if (!response.ok) throw new Error(`Eroare HTTP: ${response.status}`);
         
         const data = await response.json();
@@ -20,7 +20,7 @@ async function incarcaCursuri() {
         container.innerHTML = cursuriSortate.map((capitol, index) => {
             const idDropdown = `drop-${capitol.id}`;
             const tipEticheta = capitol.categorie;
-            const culoareEticheta="bg-amber-600 text-white";
+            const culoareEticheta="bg-amber-400 text-black";
 
             // Generare și stilizare listă de lecții cu noi simboluri
             const lectiiHtml = capitol.lectii.map(lectie => `

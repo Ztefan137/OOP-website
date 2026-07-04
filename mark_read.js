@@ -34,7 +34,6 @@ document.getElementById('btn-finalizare').onclick = async function(event) {
             // „Dacă utilizatorul a terminat lecția la care era blocat, îl trecem la următoarea și creștem streak-ul”
             if (profil.modulCurentIndex === idLectieCurenta) {
                 profil.modulCurentIndex = idLectieUrmatoare;
-                profil.streakZile = (profil.streakZile || 0) + 1;
                 
                 // Salvăm înapoi în localStorage în formatul dorit
                 localStorage.setItem('poo_dashboard_data', JSON.stringify(profil));

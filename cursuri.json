@@ -111,6 +111,15 @@
         { "nume": "11.1. Configurarea mediului", "url": "lectia_11.1.html" },
         { "nume": "11.2. CMake în CLion", "url": "lectia_11.2.html" }
       ]
+    },
+    {
+      "id": 12,
+      "titlu": "Capitolul 12 — Tooling",
+      "categorie": "laborator",
+      "lectii": [
+        { "nume": "11.1. Configurarea mediului", "url": "lectia_11.1.html" },
+        { "nume": "11.2. CMake în CLion", "url": "lectia_11.2.html" }
+      ]
     }
   ]
 }
