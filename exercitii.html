@@ -37,7 +37,7 @@
                     <pre class="code-body" data-src="coduri/pointeri_examen.cpp"><code class="language-cpp"></code></pre>
                 </div>
                 <p class="content-card-text">
-                    Programul nu compilează, deoarece cand derefernțiăm a_ptr obținem ceva constant ce nu poate fi modificat(acesta este tipul pointerului const int, chiar dacă adresa e spre o zonă neconstantă).
+                    Programul nu compilează, deoarece cand dereferențiem a_ptr obținem ceva constant ce nu poate fi modificat(acesta este tipul pointerului const int, chiar dacă adresa e spre o zonă neconstantă).
                 </p>
                 <p class="content-card-text">
                     La linia următoare nu este problemă, deoarece pointerul este constant nu valoarea la care pointează (b_ptr++ ar fi dat eroare de compilare).
@@ -50,10 +50,190 @@
                     <div class="code-header">
                         <span>C++</span>
                     </div>
-                    <pre class="code-body"><code class="language-cpp"></code></pre>
+                    <pre class="code-body" data-src="coduri/oopquiz1.cpp"><code class="language-cpp"></code></pre>
                 </div>
                 <p class="content-card-text">
-                    Alt exercitiu
+                  Programul compileaza, se afiseaza 28.
+                </p>
+            </div>
+
+            <div class="content-card">
+                <h1 class="content-card-title">Exercițiul 3</h1>
+                <div class="code-wrapper">
+                    <div class="code-header">
+                        <span>C++</span>
+                    </div>
+                    <pre class="code-body" data-src="coduri/oopquiz2.cpp"><code class="language-cpp"></code></pre>
+                </div>
+                <p class="content-card-text">
+                   Programul nu compileaza. O variabila de tip "static int" trebuie initializata dupa definitia clasei si inainte de scrierea main-ului.
+                </p>
+                <p class="content-card-text">
+                    Avand deja definita functia set_x(), solutia ar fi sa stergem cuvantul static de la atributul x si sa lasam initializarea sa gestionata de functie.
+                </p>
+            </div>
+
+            <div class="content-card">
+                <h1 class="content-card-title">Exercițiul 4</h1>
+                <div class="code-wrapper">
+                    <div class="code-header">
+                        <span>C++</span>
+                    </div>
+                    <pre class="code-body" data-src="coduri/oopquiz3.cpp"><code class="language-cpp"></code></pre>
+                </div>
+                <p class="content-card-text">
+                    Compileaza, se afiseaza 6 21 3.
+                </p>
+            </div>
+
+            <div class="content-card">
+                <h1 class="content-card-title">Exercițiul 5</h1>
+                <div class="code-wrapper">
+                    <div class="code-header">
+                        <span>C++</span>
+                    </div>
+                    <pre class="code-body" data-src="coduri/oopquiz4.cpp"><code class="language-cpp"></code></pre>
+                </div>
+                <p class="content-card-text">
+                    Nu compileaza, trebuie sters & din antetul functiei mister2.
+                </p>
+                <p class="content-card-text">
+                    Când apelezi mister1() în interiorul lui main, rezultatul este un obiect temporar.Obiectele temporare nu au un nume propriu și există doar pe durata evaluării expresiei în care au fost create, după care sunt distruse automat din memorie.
+                </p>
+                <p class="content-card-text">
+                    O referință non-const nu poate fi legată de un obiect temporar. Dacă C++ ar permite ca o referință să se lege de un obiect temporar, funcția mister2 ar modifica un obiect care oricum va dispărea imediat după terminarea liniei mister2(mister1());. Compilatorul consideră că a modifica un obiect "fantomă" este o greșeală de design și blochează compilarea cu un mesaj de eroare.
+                </p>
+            </div>
+
+            <div class="content-card">
+                <h1 class="content-card-title">Exercițiul 6</h1>
+                <div class="code-wrapper">
+                    <div class="code-header">
+                        <span>C++</span>
+                    </div>
+                    <pre class="code-body" data-src="coduri/oopquiz5.cpp"><code class="language-cpp"></code></pre>
+                </div>
+                <p class="content-card-text">
+                    Compileaza, se afiseaza 7 7 7.
+                </p>
+                <p class="content-card-text">
+                    cout << o->get_i(); ---> Pointerul o este de tip B*, dar obiectul real din spate este MM. Deoarece get_i() este virtuală, programul ignoră tipul pointerului, se duce la obiectul real și apelează suprascrierea finală: MM::get_i().
+                </p>
+                <p class="content-card-text">
+                    MM *p = dynamic_cast<MM *>(o); ---> Aici convertești pointerul la MM* (Downcasting). Obiectul este MM, pointerul este MM*. Evident, se va apela tot MM::get_i().
+                </p>
+                <p class="content-card-text">
+                    D *p2 = dynamic_cast<D *>(o);  ---> Aici convertești pointerul la tipul D*. Acum, pointerul p2 "crede" că interacționează doar cu un obiect D. Dar obiectul de la acea adresă de memorie nu și-a schimbat identitatea; este tot acel MM creat la început.
+                </p>
+                <p class="content-card-text">
+                    Dacă funcția get_i() nu ar fi fost declarată virtual în clasa B, atunci mecanismul s-ar fi bazat strict pe tipul pointerului (se numește Early Binding).
+                </p>
+            </div>
+
+            <div class="content-card">
+                <h1 class="content-card-title">Exercițiul 7</h1>
+                <div class="code-wrapper">
+                    <div class="code-header">
+                        <span>C++</span>
+                    </div>
+                    <pre class="code-body" data-src="coduri/oopquiz6.cpp"><code class="language-cpp"></code></pre>
+                </div>
+                <p class="content-card-text">
+                    Compileaza, se afiseaza 6.
+                </p>
+                <p class="content-card-text">
+                    La crearea obiectului a: B(x=7), D(B(-12) => x=-12).
+                </p>
+                <p class="content-card-text">
+                    Pentru a calcula valoarea lui b se face conversie la int() a obiectului a, astfel b = 18 + (-12).
+                </p>
+            </div>
+
+            <div class="content-card">
+                <h1 class="content-card-title">Exercițiul 8</h1>
+                <div class="code-wrapper">
+                    <div class="code-header">
+                        <span>C++</span>
+                    </div>
+                    <pre class="code-body" data-src="coduri/oopquiz7.cpp"><code class="language-cpp"></code></pre>
+                </div>
+                <p class="content-card-text">
+                    Nu compileaza.
+                </p>
+                <p class="content-card-text">
+                    Dacă definești o clasă și nu specifici tipul de moștenire, aceasta va fi implicit private. Deoarece moștenirea este private, clasa de bază B devine o componentă privată "ascunsă" în interiorul lui D. Relația "D este un B" (is-a) nu mai este vizibilă din exteriorul clasei. ( Nu putem aplica Upcasting pentru ca nu avem siguranta ca "Orice obiect de tip D este si un obiect de tip B" ).
+                </p>
+                <p class="content-card-text">
+                    Chiar dacă ai repara codul făcând moștenirea publică (class D : public B), programul se va lovi de o a doua problemă logică la linia cu typeid.
+                </p>
+                <p class="content-card-text">
+                    Clasa ta B nu are nicio funcție virtuală. Din acest motiv, ea nu este o clasă polimorfică. În absența polimorfismului, operatorul typeid nu poate determina la runtime tipul real al obiectului indicat de pointer ( pentru ca nu se creeaza un VTable ).
+                    Va fi evaluat la compile-time și va returna întotdeauna numele tipului static, adică B* (sau un șir specific compilatorului pentru tipul B pointer), niciodată D*. Condiția din if va fi mereu falsă.
+                </p>
+            </div>
+
+            <div class="content-card">
+                <h1 class="content-card-title">Exercițiul 9</h1>
+                <div class="code-wrapper">
+                    <div class="code-header">
+                        <span>C++</span>
+                    </div>
+                    <pre class="code-body" data-src="coduri/oopquiz8.cpp"><code class="language-cpp"></code></pre>
+                </div>
+                <p class="content-card-text">
+                    Nu compileaza. O clasă derivată (D) poate accesa un membru protejat (x) al clasei de bază (B) DOAR prin intermediul unui obiect de tipul derivat (D), NU și prin intermediul unui obiect de tipul de bază (B).
+                </p>
+
+                <p class="content-card-text">
+                    B f(B ob) { return x + ob.x - 1; }   --->  Aici suntem în interiorul clasei D. Funcția accesează x, dar apoi se acceseaza ob.x. Parametrul ob este de tip B (clasa de bază). Conform regulii de mai sus, compilatorul te oprește: clasa D nu are voie să "umble" în membrii protejați ai unei instanțe de tip B.
+                </p>
+
+                <p class="content-card-text">
+                    Cea mai elegantă soluție este să oferim clasei B o funcție publică de citire (un getter), pe care clasa D să o poată folosi:  int get_x() const { return x; }.
+
+                </p>
+            </div>
+
+            <div class="content-card">
+                <h1 class="content-card-title">Exercițiul 10</h1>
+                <div class="code-wrapper">
+                    <div class="code-header">
+                        <span>C++</span>
+                    </div>
+                    <pre class="code-body" data-src="coduri/oopquiz9.cpp"><code class="language-cpp"></code></pre>
+                </div>
+                <p class="content-card-text">
+                    Compileaza, se afiseaza 1131.
+                </p>
+            </div>
+
+            <div class="content-card">
+                <h1 class="content-card-title">Exercițiul 11</h1>
+                <div class="code-wrapper">
+                    <div class="code-header">
+                        <span>C++</span>
+                    </div>
+                    <pre class="code-body" data-src="coduri/oopquiz10.cpp"><code class="language-cpp"></code></pre>
+                </div>
+                <p class="content-card-text">
+                    Compileaza, la adresa catre care indica a vom aduna 23 => ne trimite la o alta adresa. Afiseaza valoarea de la noua adresa, fiind o valoare necunoscuta din memorie.
+                </p>
+            </div>
+
+            <div class="content-card">
+                <h1 class="content-card-title">Exercițiul 11</h1>
+                <div class="code-wrapper">
+                    <div class="code-header">
+                        <span>C++</span>
+                    </div>
+                    <pre class="code-body" data-src="coduri/oopquiz12.cpp"><code class="language-cpp"></code></pre>
+                </div>
+                <p class="content-card-text">
+                    Nu compileaza. La crearea new cls[10] avem nevoie de constructor fara parametru SAU cu parametru implicit.
+
+                </p>
+                <p class="content-card-text">
+                    Adaugam in constructorul clasei valoarea default pentru i: cls(int i=0) { x=i; }.
                 </p>
             </div>
         </div>
